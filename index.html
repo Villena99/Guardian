@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Guardian">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#0b1628">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icono-180.png">
+<title>Guardian</title>
+<style>
+:root{--fondo:#0b1628;--panel:#12223b;--panel2:#183052;--borde:#2a4268;--texto:#e6ebf3;--suave:#93a3bd;--oro:#c9a84c;--acero:#6f8fb8;--ok:#4fae7f;--rojo:#d2605f;--radio:14px}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--fondo);color:var(--texto);font:16px/1.45 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",system-ui,sans-serif}
+body{padding:env(safe-area-inset-top) max(16px,env(safe-area-inset-right)) calc(env(safe-area-inset-bottom) + 76px) max(16px,env(safe-area-inset-left));min-height:100vh}
+h1,h2,h3{margin:0;font-weight:650;letter-spacing:.01em}
+.cab{display:flex;align-items:center;gap:12px;padding:14px 0 10px}
+.cab img{width:40px;height:40px;border-radius:10px;flex:none}
+.cab h1{font-size:19px;letter-spacing:.14em;text-transform:uppercase}
+.cab small{display:block;color:var(--suave);font-size:12px;letter-spacing:0;text-transform:none}
+.cab button{margin-left:auto}
+.tarjeta{background:var(--panel);border:1px solid var(--borde);border-radius:var(--radio);padding:16px;margin:12px 0}
+.tarjeta h2{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--suave);margin-bottom:10px}
+.grande{font-size:44px;font-weight:700;line-height:1;color:var(--oro);font-variant-numeric:tabular-nums}
+.fila{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.fila+.fila{border-top:1px solid var(--borde);margin-top:10px;padding-top:10px}
+.suave{color:var(--suave);font-size:14px}
+.chip{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:600;border:1px solid var(--borde);color:var(--suave)}
+.chip.ok{color:var(--ok);border-color:var(--ok)}.chip.oro{color:var(--oro);border-color:var(--oro)}.chip.rojo{color:var(--rojo);border-color:var(--rojo)}
+.barra{height:8px;border-radius:6px;background:var(--panel2);overflow:hidden;margin:10px 0 12px}
+.barra i{display:block;height:100%;background:linear-gradient(90deg,var(--acero),var(--oro))}
+button,.boton{font:inherit;color:var(--texto);background:var(--panel2);border:1px solid var(--acero);border-radius:10px;padding:10px 16px;min-height:44px}
+button.oro{background:var(--oro);color:#1a1405;border-color:var(--oro);font-weight:700}
+button:disabled{opacity:.5}
+button.mini{min-height:36px;padding:6px 12px;font-size:14px}
+.tarea{align-items:flex-start}
+.tarea .nombre{flex:1;min-width:0;overflow-wrap:anywhere}
+.tarea.hecha .nombre{color:var(--suave)}.tarea.hecha .tn{text-decoration:line-through}
+.marca{width:26px;height:26px;border-radius:8px;border:2px solid var(--acero);flex:none;display:grid;place-items:center;font-weight:800;color:#0b1628}
+.hecha .marca{background:var(--ok);border-color:var(--ok)}
+input,textarea{width:100%;font:inherit;color:var(--texto);background:#0d1b31;border:1px solid var(--borde);border-radius:10px;padding:12px;margin:6px 0 12px}
+label{font-size:13px;color:var(--suave)}
+nav{position:fixed;left:0;right:0;bottom:0;display:flex;background:#0d1b31ee;border-top:1px solid var(--borde);padding:6px max(8px,env(safe-area-inset-right)) calc(env(safe-area-inset-bottom) + 6px) max(8px,env(safe-area-inset-left));backdrop-filter:blur(8px)}
+nav button{flex:1;background:none;border:0;color:var(--suave);font-size:13px;border-radius:10px}
+nav button.activa{color:var(--oro);background:var(--panel)}
+.aviso{padding:10px 14px;border-radius:10px;background:var(--panel2);border:1px solid var(--borde);margin:10px 0;font-size:14px}
+.aviso.mal{border-color:var(--rojo);color:#f0b9b8}
+.texto{white-space:pre-wrap;overflow-wrap:anywhere;font-size:15px}
+.etq{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--oro);margin-top:8px}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<header class="cab">
+  <img src="icono-192.png" alt="" width="40" height="40">
+  <div><h1>Guardian</h1><small id="actualizado">—</small></div>
+  <button class="mini" id="b-refrescar" hidden>Actualizar</button>
+</header>
+<div id="avisos"></div>
+
+<main id="v-config" hidden>
+  <div class="tarjeta"><h2>Primer uso</h2>
+    <p class="suave">Abre el <b>enlace de configuración</b> que copiaste desde Guardian en el PC (Ajustes → Perfil → iPhone…). Así se rellenan solos la dirección de tu Supabase, la clave pública y tu correo.</p>
+    <p class="suave">Si instalaste la app en la pantalla de inicio, pega aquí el enlace (la app instalada no recibe el enlace que abres en Safari):</p>
+    <label for="c-e">Enlace de configuración</label><input id="c-e" inputmode="url" autocapitalize="off" autocomplete="off" placeholder="https://…#cfg=…">
+    <button id="b-pegar">Usar este enlace</button>
+    <p class="suave" style="margin-top:18px">O escríbelos a mano:</p>
+    <label for="c-u">URL de Supabase</label><input id="c-u" inputmode="url" autocapitalize="off" autocomplete="off" placeholder="https://xxxx.supabase.co">
+    <label for="c-k">Clave pública (anon / publishable)</label><input id="c-k" autocapitalize="off" autocomplete="off">
+    <label for="c-c">Correo</label><input id="c-c" type="email" autocapitalize="off" autocomplete="username">
+    <button class="oro" id="b-cfg">Continuar</button></div>
+</main>
+
+<main id="v-login" hidden>
+  <div class="tarjeta"><h2>Entrar</h2>
+    <p class="suave">Se escribe una sola vez en este iPhone. La frase es la misma de sincronización del PC y solo sirve para descifrar tu día aquí.</p>
+    <label for="l-p">Contraseña de la nube</label><input id="l-p" type="password" autocomplete="current-password">
+    <label for="l-f">Frase de sincronización</label><input id="l-f" type="password" autocomplete="off">
+    <button class="oro" id="b-entrar">Entrar</button></div>
+</main>
+
+<main id="v-app" hidden>
+  <section id="t-hoy"></section>
+  <section id="t-estudio" hidden></section>
+  <section id="t-diario" hidden></section>
+  <p class="suave" style="text-align:center;margin-top:24px"><button class="mini" id="b-salir">Cerrar sesión en este iPhone</button></p>
+</main>
+
+<nav id="nav" hidden>
+  <button data-t="hoy" class="activa">Hoy</button><button data-t="estudio">Estudio</button><button data-t="diario">Diario</button>
+</nav>
+
+<script>
+"use strict";
+const LS = {
+  leer(k){ try { return JSON.parse(localStorage.getItem(k)); } catch(e){ return null; } },
+  poner(k,v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} },
+  quitar(k){ try { localStorage.removeItem(k); } catch(e){} }
+};
+const $ = id => document.getElementById(id);
+const VUELTAS = 600000, PREFIJO = "guardian-movil-v1:";
+let cfg = LS.leer("g_cfg"), sesion = LS.leer("g_sesion"), clave = null, datos = null, tab = "hoy", ocupado = false, enPeticion = false;
+
+/* ---------- utilidades ---------- */
+function el(tag, props, ...hijos){
+  const e = document.createElement(tag);
+  for (const [k,v] of Object.entries(props || {})){
+    if (k === "class") e.className = v; else if (k === "texto") e.textContent = v; else if (k.startsWith("on")) e.addEventListener(k.slice(2), v); else e.setAttribute(k, v);
+  }
+  for (const h of hijos.flat()) if (h != null) e.append(h.nodeType ? h : document.createTextNode(String(h)));
+  return e;
+}
+const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+const b64txt = u8 => btoa(String.fromCharCode(...u8));
+function avisar(texto, mal){ const a = $("avisos"); a.replaceChildren(texto ? el("div", {class: "aviso" + (mal ? " mal" : ""), texto}) : ""); }
+function hms(s){ s = Math.max(0, Math.round(s)); const h = Math.floor(s/3600), m = Math.floor(s%3600/60); return h ? `${h} h ${String(m).padStart(2,"0")} min` : `${m} min`; }
+function hace(iso){
+  const s = (Date.now() - new Date(iso).getTime())/1000;
+  if (!isFinite(s)) return "—"; if (s < 90) return "ahora mismo"; if (s < 3600) return `hace ${Math.round(s/60)} min`;
+  if (s < 86400) return `hace ${Math.round(s/3600)} h`; return `hace ${Math.round(s/86400)} d`;
+}
+function vista(cual){ for (const v of ["v-config","v-login","v-app"]) $(v).hidden = v !== cual; $("nav").hidden = cual !== "v-app"; $("b-refrescar").hidden = cual !== "v-app"; }
+
+/* ---------- configuración (enlace con # o formulario) ---------- */
+function leerEnlace(hash = location.hash){
+  const m = hash.match(/#cfg=([A-Za-z0-9_-]+)$/);
+  if (!m) return null;
+  try { let c = m[1].replace(/-/g,"+").replace(/_/g,"/"); while (c.length % 4) c += "=";
+    const d = JSON.parse(new TextDecoder().decode(b64(c))); return d && d.u && d.k && d.c ? {u: String(d.u).replace(/\/+$/,""), k: d.k, c: d.c} : null; } catch(e){ return null; }
+}
+function guardarCfg(c){
+  if (!/^(https:\/\/|http:\/\/(localhost|127\.0\.0\.1)[:\/])/.test(c.u)) { avisar("La URL de Supabase debe empezar por https://", true); return false; }
+  if (/service_role/.test(c.k) || (c.k.split(".").length === 3 && (()=>{ try { return JSON.parse(atob(c.k.split(".")[1].replace(/-/g,"+").replace(/_/g,"/"))).role === "service_role"; } catch(e){ return false; } })())) {
+    avisar("Esa es la clave service_role: NO la uses. Hace falta la clave pública (anon / publishable).", true); return false; }
+  cfg = c; LS.poner("g_cfg", c); history.replaceState(null, "", location.pathname + location.search); return true;
+}
+
+/* ---------- Supabase ---------- */
+async function api(ruta, opciones = {}, conSesion = true){
+  const h = Object.assign({apikey: cfg.k, "Content-Type": "application/json"}, opciones.headers || {});
+  if (conSesion){ await asegurarToken(); h.Authorization = "Bearer " + sesion.token; }
+  let r; try { r = await fetch(cfg.u + ruta, Object.assign({}, opciones, {headers: h})); } catch(e){ throw new Error("Sin conexión con la nube."); }
+  if (!r.ok){
+    if (r.status === 401 && conSesion) { sesion.caduca = 0; }
+    let t = ""; try { const j = await r.json(); t = j.error_description || j.msg || j.message || ""; } catch(e){}
+    throw new Error(t || `Error ${r.status} de la nube.`);
+  }
+  const txt = await r.text(); return txt ? JSON.parse(txt) : null;
+}
+function guardarSesion(j){
+  sesion = Object.assign({}, sesion || {}, {token: j.access_token, refresco: j.refresh_token, caduca: Date.now() + (j.expires_in - 60) * 1000, uid: j.user.id});
+  LS.poner("g_sesion", sesion);
+}
+async function asegurarToken(){
+  if (sesion && sesion.token && Date.now() < sesion.caduca) return;
+  if (!sesion || !sesion.refresco) throw new Error("Hay que volver a entrar.");
+  try { guardarSesion(await api("/auth/v1/token?grant_type=refresh_token", {method: "POST", body: JSON.stringify({refresh_token: sesion.refresco})}, false)); }
+  catch(e){ throw new Error("La sesión caducó: vuelve a entrar."); }
+}
+async function derivar(frase, uid){
+  const e = new TextEncoder();
+  const base = await crypto.subtle.importKey("raw", e.encode(frase), "PBKDF2", false, ["deriveBits"]);
+  return new Uint8Array(await crypto.subtle.deriveBits({name: "PBKDF2", hash: "SHA-256", salt: e.encode(PREFIJO + uid), iterations: VUELTAS}, base, 256));
+}
+async function importar(u8){ return crypto.subtle.importKey("raw", u8, "AES-GCM", false, ["decrypt"]); }
+async function descifrar(paquete){
+  try { const p = typeof paquete === "string" ? JSON.parse(paquete) : paquete;
+    const claro = await crypto.subtle.decrypt({name: "AES-GCM", iv: b64(p.n)}, clave, b64(p.c)); return JSON.parse(new TextDecoder().decode(claro)); }
+  catch(e){ throw new Error("No se pudo descifrar: ¿la frase es la misma que en el PC?"); }
+}
+
+/* ---------- entrar ---------- */
+async function entrar(){
+  const p = $("l-p").value, f = $("l-f").value;
+  if (!p || !f) { avisar("Escribe la contraseña y la frase.", true); return; }
+  $("b-entrar").disabled = true; avisar("Entrando… (derivar la clave tarda unos segundos)");
+  try {
+    const j = await api("/auth/v1/token?grant_type=password", {method: "POST", body: JSON.stringify({email: cfg.c, password: p})}, false);
+    guardarSesion(j);
+    const k = await derivar(f, sesion.uid); sesion.clave = b64txt(k); LS.poner("g_sesion", sesion);
+    clave = await importar(k); $("l-p").value = ""; $("l-f").value = "";
+    avisar(""); await abrirApp();
+  } catch(e){ avisar(e.message, true); } finally { $("b-entrar").disabled = false; }
+}
+
+/* ---------- pintar ---------- */
+function tarjeta(titulo, ...hijos){ return el("div", {class: "tarjeta"}, titulo ? el("h2", {texto: titulo}) : null, ...hijos); }
+function pintarHoy(){
+  const s = $("t-hoy"); s.replaceChildren();
+  if (!datos) return;
+  const j = datos.juego, n = datos.nivel;
+  if (j){
+    const pct = j.limite_min ? Math.min(100, Math.round(j.usado_hoy_s / (j.limite_min*60) * 100)) : 0;
+    s.append(tarjeta("Tiempo de juego",
+      el("div", {class: "fila"}, el("div", {class: "grande", texto: j.activa ? hms(j.restante_s) : "Sin sesión"}), el("span", {class: "chip " + (j.activa ? "ok" : ""), texto: j.activa ? "en juego" : "bloqueado"})),
+      el("div", {class: "barra"}, el("i", {style: `width:${pct}%`})),
+      el("p", {class: "suave", texto: `Hoy has usado ${hms(j.usado_hoy_s)} de ${j.limite_min} min.`}),
+      el("div", {class: "fila"}, el("span", {texto: "Saldo"}), el("b", {texto: `${j.saldo} créditos`})),
+      el("div", {class: "fila"}, el("span", {texto: "Bloque"}), el("span", {class: "suave", texto: `${j.bloque_min} min · ${j.coste_bloque} créditos`})),
+      el("div", {class: "fila"}, el("span", {texto: "Tienda"}), el("span", {class: "chip " + (j.tienda_abierta ? "ok" : "rojo"), texto: j.tienda_abierta ? "abierta" : "cerrada"}))));
+  }
+  if (n){
+    s.append(tarjeta("Nivel",
+      el("div", {class: "fila"}, el("b", {texto: n.nombre}), el("span", {class: "chip oro", texto: `racha ${n.racha}`})),
+      el("div", {class: "barra"}, el("i", {style: `width:${n.porcentaje}%`})),
+      el("div", {class: "fila"}, el("span", {texto: "Anki"}), el("span", {class: "chip " + (n.anki ? "ok" : ""), texto: n.requisitos.includes("anki") ? (n.anki ? "hecho" : "pendiente") : "descanso"})),
+      el("div", {class: "fila"}, el("span", {texto: "Strava"}), el("span", {class: "chip " + (n.strava ? "ok" : ""), texto: n.requisitos.includes("strava") ? (n.strava ? "hecho" : "pendiente") : "descanso"}))));
+  }
+  if (datos.tareas){
+    const hechas = datos.tareas.filter(t => t.hecha).length;
+    const filas = datos.tareas.map(t => el("div", {class: "fila tarea" + (t.hecha ? " hecha" : "")},
+      el("div", {class: "marca", texto: t.hecha ? "✓" : ""}),
+      el("div", {class: "nombre"}, el("span", {class: "tn", texto: t.nombre}), el("div", {class: "suave", texto: t.estudio ? `Estudio · ${t.minutos} min` : (t.manual ? "Manual" : "Automática") + (t.recompensa ? ` · ${t.recompensa} cr.` : "")})),
+      (t.manual && !t.hecha) ? el("button", {class: "mini oro", onclick: ev => tachar(t, ev.currentTarget)}, "Tachar") : null));
+    s.append(tarjeta(`Tareas de hoy · ${hechas}/${datos.tareas.length}`, filas.length ? filas : el("p", {class: "suave", texto: "Hoy no hay tareas."})));
+  }
+}
+function pintarEstudio(){
+  const s = $("t-estudio"); s.replaceChildren(); const e = datos && datos.estudio;
+  if (!e) { s.append(tarjeta("Estudio de hoy", el("p", {class: "suave", texto: "Sin datos de Pomodoro."}))); return; }
+  if (!e.hay){ s.append(tarjeta("Estudio de hoy", el("div", {class: "grande", texto: "0"}), el("p", {class: "suave", texto: "No estudiaste todavía. Este registro se guarda igualmente."}))); return; }
+  s.append(tarjeta("Estudio de hoy",
+    el("div", {class: "grande", texto: e.estudio}),
+    el("p", {class: "suave", texto: `${e.pomodoros} pomodoros · de ${e.inicio} a ${e.fin}`}),
+    el("div", {class: "fila"}, el("span", {texto: "Descansos"}), el("span", {class: "chip " + (e.clase || "ok"), texto: e.exceso > 2 ? `+${e.exceso} min` : "en su sitio"})),
+    el("div", {class: "fila"}, el("span", {class: "suave", texto: "Real / previsto"}), el("span", {texto: `${e.descanso_real} / ${e.descanso_previsto} min`}))));
+  s.append(tarjeta("Pomodoros", e.filas.map(f => el("div", {class: "fila"}, el("span", {texto: `${f.n}. ${f.inicio}–${f.fin}`}), el("span", {class: "suave", texto: `${f.min} min`}), el("span", {class: "chip " + (f.clase || ""), texto: f.resultado})))));
+}
+function pintarDiario(){
+  const s = $("t-diario"); s.replaceChildren();
+  const aud = (datos && datos.auditorias) || [], ent = datos && datos.diario && datos.diario.entradas || [];
+  const campo = (et, tx) => tx ? [el("div", {class: "etq", texto: et}), el("div", {class: "texto", texto: tx})] : [];
+  s.append(el("p", {class: "suave", texto: "Solo lectura: se escribe en el PC."}));
+  for (const a of aud) s.append(tarjeta(`Auditoría ${a.inicio} → ${a.fin}`, campo("Qué funcionó", a.funciono), campo("Qué cambiar", a.cambiar), campo("Objetivos", a.objetivos)));
+  if (!ent.length) s.append(tarjeta("Diario", el("p", {class: "suave", texto: "Aún no hay entradas."})));
+  for (const e of ent) s.append(tarjeta(e.titulo, el("span", {class: "suave", texto: `${e.fecha}${e.animo ? ` · ánimo ${e.animo}/5` : ""}${e.energia ? ` · energía ${e.energia}/5` : ""}`}),
+    campo("Logros", e.logros), campo("Obstáculos", e.obstaculos), campo("Misión de mañana", e.manana)));
+}
+function pintar(){ pintarHoy(); pintarEstudio(); pintarDiario(); pintarHora(); }
+function pintarHora(){ const a = $("actualizado"); a.textContent = datos ? "Actualizado " + hace(datos.creado) : "Sin datos todavía"; }
+
+/* ---------- datos ---------- */
+async function cargar(){
+  if (ocupado || enPeticion) return; ocupado = true;
+  try {
+    const filas = await api("/rest/v1/movil_estado?select=datos,actualizado");
+    if (!filas || !filas.length) { avisar("El PC todavía no ha publicado nada. Abre Guardian en el PC y activa «iPhone…».", true); return; }
+    const d = await descifrar(filas[0].datos); datos = d; LS.poner("g_ultimo", filas[0].datos); avisar(""); pintar();
+  } catch(e){
+    const guardado = LS.leer("g_ultimo");
+    if (guardado && clave && !datos){ try { datos = await descifrar(guardado); pintar(); } catch(_){} }
+    avisar(e.message + (datos ? " Mostrando lo último que se vio." : ""), true);
+    if (/volver a entrar|caducó/.test(e.message)) vista("v-login");
+  } finally { ocupado = false; }
+}
+async function tachar(t, boton){
+  enPeticion = true; boton.disabled = true; boton.textContent = "Pidiendo…";
+  try {
+    const r = await api("/rest/v1/movil_peticiones", {method: "POST", headers: {Prefer: "return=representation"}, body: JSON.stringify({tipo: "tachar", tarea: t.id})});
+    const id = r[0].id; avisar("Pedido al PC; esperando… (puede tardar hasta 30 s)");
+    for (let i = 0; i < 30; i++){
+      await new Promise(f => setTimeout(f, 2500));
+      const x = await api(`/rest/v1/movil_peticiones?id=eq.${id}&select=estado,resultado`);
+      if (x && x[0] && x[0].estado !== "pendiente"){
+        enPeticion = false; await cargar();
+        avisar(x[0].estado === "hecha" ? `«${t.nombre}» tachada.` : x[0].resultado || "El PC la rechazó.", x[0].estado !== "hecha");
+        return;
+      }
+    }
+    avisar("El PC no respondió (¿está apagado o Guardian cerrado?). Se aplicará si se enciende en 15 minutos.", true);
+  } catch(e){ avisar(e.message, true); }
+  enPeticion = false; boton.disabled = false; boton.textContent = "Tachar";
+}
+
+/* ---------- arranque ---------- */
+async function abrirApp(){ vista("v-app"); pintar(); await cargar(); }
+async function arrancar(){
+  const e = leerEnlace(); if (e && guardarCfg(e)) { sesion = null; clave = null; LS.quitar("g_sesion"); }
+  if (!cfg) { vista("v-config"); return; }
+  if (!sesion || !sesion.clave){ vista("v-login"); return; }
+  try { clave = await importar(b64(sesion.clave)); } catch(err){ vista("v-login"); return; }
+  const g = LS.leer("g_ultimo"); if (g) { try { datos = await descifrar(g); } catch(_){} }
+  await abrirApp();
+}
+$("b-cfg").onclick = () => { if (guardarCfg({u: $("c-u").value.trim().replace(/\/+$/,""), k: $("c-k").value.trim(), c: $("c-c").value.trim()})) { avisar(""); vista("v-login"); } };
+$("b-pegar").onclick = () => { const e = leerEnlace($("c-e").value.trim()); if (!e) { avisar("Ese enlace no es válido: cópialo entero desde Guardian en el PC.", true); return; }
+  if (guardarCfg(e)) { avisar(""); vista("v-login"); } };
+$("b-entrar").onclick = entrar;
+$("b-refrescar").onclick = cargar;
+$("b-salir").onclick = () => { for (const k of ["g_sesion","g_ultimo"]) LS.quitar(k); sesion = null; clave = null; datos = null; vista("v-login"); };
+$("nav").onclick = ev => { const b = ev.target.closest("button"); if (!b) return; tab = b.dataset.t;
+  for (const x of $("nav").children) x.classList.toggle("activa", x === b);
+  for (const t of ["hoy","estudio","diario"]) $("t-" + t).hidden = t !== tab; window.scrollTo(0, 0); };
+setInterval(() => { if (!document.hidden && !$("v-app").hidden) cargar(); }, 20000);
+setInterval(pintarHora, 30000);
+document.addEventListener("visibilitychange", () => { if (!document.hidden && !$("v-app").hidden) cargar(); });
+if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(() => {});
+arrancar();
+</script>
+</body>
+</html>
