@@ -7,94 +7,163 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Guardian">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="theme-color" content="#0b1628">
+<meta name="theme-color" content="#0A1424">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icono-180.png">
 <title>Guardian</title>
 <style>
-:root{--fondo:#0b1628;--panel:#12223b;--panel2:#183052;--borde:#2a4268;--texto:#e6ebf3;--suave:#93a3bd;--oro:#c9a84c;--acero:#6f8fb8;--ok:#4fae7f;--rojo:#d2605f;--radio:14px}
+:root{--fondo:#0A1424;--panel:#101F37;--panel2:#14284A;--panel3:#1B3558;--borde:#223C61;--borde2:#2B4A74;--texto:#E4EAF3;--suave:#8EA0BA;--plata:#C7D0DE;--oro:#C9A84C;--ok:#4FAE7F;--okt:#7ACFA3;--rojo:#D2605F;--acero:#6F8FB8;
+ --cond:"Avenir Next Condensed","Barlow Condensed","Roboto Condensed","Arial Narrow",system-ui,sans-serif;--cuerpo:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",system-ui,sans-serif}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;background:var(--fondo);color:var(--texto);font:16px/1.45 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",system-ui,sans-serif}
-body{padding:env(safe-area-inset-top) max(16px,env(safe-area-inset-right)) calc(env(safe-area-inset-bottom) + 76px) max(16px,env(safe-area-inset-left));min-height:100vh}
-h1,h2,h3{margin:0;font-weight:650;letter-spacing:.01em}
-.cab{display:flex;align-items:center;gap:12px;padding:14px 0 10px}
-.cab img{width:40px;height:40px;border-radius:10px;flex:none}
-.cab h1{font-size:19px;letter-spacing:.14em;text-transform:uppercase}
-.cab small{display:block;color:var(--suave);font-size:12px;letter-spacing:0;text-transform:none}
-.cab button{margin-left:auto}
-.tarjeta{background:var(--panel);border:1px solid var(--borde);border-radius:var(--radio);padding:16px;margin:12px 0}
-.tarjeta h2{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--suave);margin-bottom:10px}
-.grande{font-size:44px;font-weight:700;line-height:1;color:var(--oro);font-variant-numeric:tabular-nums}
+html,body{margin:0;background:var(--fondo);color:var(--texto);font:16px/1.4 var(--cuerpo)}
+body{padding:env(safe-area-inset-top) max(16px,env(safe-area-inset-right)) calc(env(safe-area-inset-bottom) + 84px) max(16px,env(safe-area-inset-left));min-height:100vh}
+h1,h2,h3,p{margin:0}
+button{font:inherit;color:inherit}
+.etq{font-family:var(--cond);font-weight:600;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--suave)}
+.cab{display:flex;align-items:center;gap:10px;padding:12px 0 6px}
+.cab .logo{width:34px;height:34px;border-radius:8px;flex:none}
+.cab .marca{flex:1;min-width:0}
+.cab h1{font-family:var(--cond);font-weight:700;font-size:20px;letter-spacing:.16em;line-height:1}
+.cab small{display:block;font-size:12px;color:var(--suave);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.icono-btn{width:44px;height:44px;border-radius:8px;border:1px solid var(--borde2);background:var(--panel);display:grid;place-items:center;flex:none;padding:0}
+.icono-btn svg{width:22px;height:22px}
+.chip-racha{border:1px solid var(--borde2);border-radius:6px;padding:6px 10px;font-family:var(--cond);font-weight:600;font-size:13px;letter-spacing:.14em;color:var(--plata);white-space:nowrap}
+.tarjeta{background:var(--panel);border:1px solid var(--borde);border-radius:6px;padding:14px;margin:10px 0}
+.tarjeta>.etq{display:block;margin-bottom:8px}
+.heroe{background:linear-gradient(180deg,var(--panel2),#0F2038);border-color:var(--borde2);position:relative;padding:16px 16px 14px}
+.heroe::before{content:"";position:absolute;left:0;top:0;width:44px;height:3px;background:var(--oro)}
 .fila{display:flex;align-items:center;justify-content:space-between;gap:12px}
-.fila+.fila{border-top:1px solid var(--borde);margin-top:10px;padding-top:10px}
-.suave{color:var(--suave);font-size:14px}
-.chip{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:600;border:1px solid var(--borde);color:var(--suave)}
-.chip.ok{color:var(--ok);border-color:var(--ok)}.chip.oro{color:var(--oro);border-color:var(--oro)}.chip.rojo{color:var(--rojo);border-color:var(--rojo)}
-.barra{height:8px;border-radius:6px;background:var(--panel2);overflow:hidden;margin:10px 0 12px}
-.barra i{display:block;height:100%;background:linear-gradient(90deg,var(--acero),var(--oro))}
-button,.boton{font:inherit;color:var(--texto);background:var(--panel2);border:1px solid var(--acero);border-radius:10px;padding:10px 16px;min-height:44px}
-button.oro{background:var(--oro);color:#1a1405;border-color:var(--oro);font-weight:700}
-button:disabled{opacity:.5}
-button.mini{min-height:36px;padding:6px 12px;font-size:14px}
+.fila+.fila{border-top:1px solid var(--panel3);margin-top:9px;padding-top:9px}
+.sub{color:var(--suave);font-size:13px}
+.num{font-family:var(--cond);font-weight:700;font-variant-numeric:tabular-nums}
+.oro{color:var(--oro)}
+.chip{display:inline-block;padding:2px 9px;border-radius:3px;font-size:12px;font-weight:600;border:1px solid var(--borde2);color:#9DB0CB;background:#1B2D4A;white-space:nowrap}
+.chip.ok{color:var(--okt);border-color:#2F6B55;background:#17382F}.chip.oro{color:var(--oro);border-color:#5B4F22;background:#2A2615}.chip.rojo{color:#F0A3A2;border-color:#7A3B3B;background:#3A1F22}
+.rejilla2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:10px 0}
+.rejilla2 .tarjeta{margin:0}
+.barra{height:5px;background:var(--panel3);margin-top:8px}
+.barra i{display:block;height:100%;background:var(--plata)}
+.barra.oro i{background:var(--oro)}
+.anillo-fila{display:flex;align-items:center;gap:16px}
 .tarea{align-items:flex-start}
-.tarea .nombre{flex:1;min-width:0;overflow-wrap:anywhere}
+.tarea .nombre{flex:1;min-width:0;overflow-wrap:anywhere;font-weight:500;font-size:15px}
 .tarea.hecha .nombre{color:var(--suave)}.tarea.hecha .tn{text-decoration:line-through}
-.marca{width:26px;height:26px;border-radius:8px;border:2px solid var(--acero);flex:none;display:grid;place-items:center;font-weight:800;color:#0b1628}
-.hecha .marca{background:var(--ok);border-color:var(--ok)}
-input,textarea{width:100%;font:inherit;color:var(--texto);background:#0d1b31;border:1px solid var(--borde);border-radius:10px;padding:12px;margin:6px 0 12px}
+.marca-t{width:22px;height:22px;border:1.5px solid var(--acero);border-radius:3px;flex:none;display:grid;place-items:center;margin-top:2px}
+.hecha .marca-t{background:var(--ok);border-color:var(--ok)}
+button.boton{background:var(--panel3);border:1px solid var(--acero);border-radius:4px;padding:9px 14px;min-height:40px}
+button.dorado{background:var(--oro);color:#17120A;border-color:var(--oro);font-weight:600}
+button.mini{min-height:38px;padding:7px 13px;font-size:14px}
+button:disabled{opacity:.5}
+input{width:100%;font:inherit;color:var(--texto);background:#0C1A2E;border:1px solid var(--borde2);border-radius:4px;padding:12px;margin:6px 0 12px}
 label{font-size:13px;color:var(--suave)}
-nav{position:fixed;left:0;right:0;bottom:0;display:flex;background:#0d1b31ee;border-top:1px solid var(--borde);padding:6px max(8px,env(safe-area-inset-right)) calc(env(safe-area-inset-bottom) + 6px) max(8px,env(safe-area-inset-left));backdrop-filter:blur(8px)}
-nav button{flex:1;background:none;border:0;color:var(--suave);font-size:13px;border-radius:10px}
-nav button.activa{color:var(--oro);background:var(--panel)}
-.aviso{padding:10px 14px;border-radius:10px;background:var(--panel2);border:1px solid var(--borde);margin:10px 0;font-size:14px}
-.aviso.mal{border-color:var(--rojo);color:#f0b9b8}
+nav.inferior{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:space-around;background:#0C1A2Eee;border-top:1px solid var(--borde);padding:8px max(8px,env(safe-area-inset-right)) calc(env(safe-area-inset-bottom) + 6px) max(8px,env(safe-area-inset-left));backdrop-filter:blur(8px);z-index:5}
+nav.inferior button{flex:1;background:none;border:0;color:var(--suave);display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 0;min-height:48px}
+nav.inferior svg{width:24px;height:24px}
+nav.inferior span{font-family:var(--cond);font-weight:600;font-size:13px;letter-spacing:.14em}
+nav.inferior button.activa{color:var(--oro)}
+.aviso{padding:10px 12px;border-radius:4px;background:var(--panel3);border:1px solid var(--borde2);margin:10px 0;font-size:14px}
+.aviso.mal{border-color:var(--rojo);color:#F0B9B8}
 .texto{white-space:pre-wrap;overflow-wrap:anywhere;font-size:15px}
-.etq{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--oro);margin-top:8px}
+.titulo-pag{font-family:var(--cond);font-weight:700;font-size:26px;letter-spacing:.06em;text-transform:uppercase;padding:10px 0 2px}
+.vacio{color:var(--suave);font-size:14px;padding:6px 0}
 [hidden]{display:none!important}
+
+/* panel lateral */
+#velo{position:fixed;inset:0;background:rgba(3,8,16,.62);opacity:0;pointer-events:none;transition:opacity .22s;z-index:20}
+#velo.abierto{opacity:1;pointer-events:auto}
+#panel{position:fixed;top:0;bottom:0;left:0;width:min(84vw,320px);background:#0C1A2E;border-right:1px solid var(--borde2);transform:translateX(-102%);transition:transform .25s ease;z-index:21;display:flex;flex-direction:column;padding:calc(env(safe-area-inset-top) + 14px) 0 calc(env(safe-area-inset-bottom) + 14px) env(safe-area-inset-left)}
+#panel.abierto{transform:none}
+#panel .cabp{display:flex;align-items:center;gap:10px;padding:0 16px 14px;border-bottom:1px solid var(--borde)}
+#panel .cabp img{width:34px;height:34px;border-radius:8px}
+#panel .cabp b{font-family:var(--cond);font-size:20px;letter-spacing:.22em}
+#panel .cabp .icono-btn{margin-left:auto}
+#panel .lista{flex:1;overflow-y:auto;padding:8px 0}
+#panel .item{display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:none;border:0;border-left:3px solid transparent;padding:13px 16px;min-height:52px;color:var(--texto)}
+#panel .item svg{width:22px;height:22px;color:var(--acero);flex:none}
+#panel .item .t{font-weight:500;font-size:16px}
+#panel .item .d{display:block;font-size:12px;color:var(--suave)}
+#panel .item.activa{background:var(--panel);border-left-color:var(--oro)}
+#panel .item.activa svg{color:var(--oro)}
+#panel .pie{padding:10px 16px 0;border-top:1px solid var(--borde);font-size:12px;color:var(--suave)}
+body.panel-abierto{overflow:hidden}
+
+/* calendario */
+.cal{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px;margin-top:8px}
+.cal .dsem{font-family:var(--cond);font-weight:600;font-size:12px;letter-spacing:.1em;color:var(--suave);text-align:center;padding:2px 0}
+.cal button{aspect-ratio:1/1;min-height:42px;background:#0C1A2E;border:1px solid var(--panel3);border-radius:4px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:0;font-size:14px}
+.cal button.hoy{border-color:var(--oro);color:var(--oro)}
+.cal button.sel{background:var(--panel3);border-color:var(--plata)}
+.cal button.vacio-d{visibility:hidden}
+.cal .puntos{display:flex;gap:2px;height:5px}
+.cal .puntos i{width:5px;height:5px;border-radius:50%;background:var(--acero)}
+.cal .puntos i.c{background:var(--oro)}.cal .puntos i.l{background:var(--ok)}
+.filtros{display:flex;gap:8px;margin:10px 0}
+.filtros button{flex:1;border:1px solid var(--borde2);background:var(--panel);border-radius:4px;padding:9px 6px;min-height:40px;font-size:14px;color:var(--suave)}
+.filtros button.activa{color:var(--oro);border-color:var(--oro);background:#1A1F2A}
+svg.graf{width:100%;height:auto;display:block}
 </style>
 </head>
 <body>
-<header class="cab">
-  <img src="icono-192.png" alt="" width="40" height="40">
-  <div><h1>Guardian</h1><small id="actualizado">—</small></div>
-  <button class="mini" id="b-refrescar" hidden>Actualizar</button>
+<header class="cab" id="cab">
+  <button class="icono-btn" id="b-menu" aria-label="Abrir el menú" hidden>
+    <svg viewBox="0 0 24 24" fill="none" stroke="#C7D0DE" stroke-width="2" stroke-linecap="square" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+  </button>
+  <img class="logo" src="icono-192.png" alt="" width="34" height="34">
+  <div class="marca"><h1>GUARDIAN</h1><small id="actualizado">—</small></div>
+  <span class="chip-racha" id="chip-racha" hidden></span>
 </header>
 <div id="avisos"></div>
 
 <main id="v-config" hidden>
-  <div class="tarjeta"><h2>Primer uso</h2>
-    <p class="suave">Abre el <b>enlace de configuración</b> que copiaste desde Guardian en el PC (Ajustes → Perfil → iPhone…). Así se rellenan solos la dirección de tu Supabase, la clave pública y tu correo.</p>
-    <p class="suave">Si instalaste la app en la pantalla de inicio, pega aquí el enlace (la app instalada no recibe el enlace que abres en Safari):</p>
+  <div class="tarjeta"><span class="etq">Primer uso</span>
+    <p class="sub">Abre el <b>enlace de configuración</b> que copiaste desde Guardian en el PC (Ajustes → Perfil → iPhone…). Así se rellenan solos la dirección de tu Supabase, la clave pública y tu correo.</p>
+    <p class="sub" style="margin-top:10px">Si instalaste la app en la pantalla de inicio, pega aquí el enlace (la app instalada no recibe el enlace que abres en Safari):</p>
     <label for="c-e">Enlace de configuración</label><input id="c-e" inputmode="url" autocapitalize="off" autocomplete="off" placeholder="https://…#cfg=…">
-    <button id="b-pegar">Usar este enlace</button>
-    <p class="suave" style="margin-top:18px">O escríbelos a mano:</p>
+    <button class="boton" id="b-pegar">Usar este enlace</button>
+    <p class="sub" style="margin-top:18px">O escríbelos a mano:</p>
     <label for="c-u">URL de Supabase</label><input id="c-u" inputmode="url" autocapitalize="off" autocomplete="off" placeholder="https://xxxx.supabase.co">
     <label for="c-k">Clave pública (anon / publishable)</label><input id="c-k" autocapitalize="off" autocomplete="off">
     <label for="c-c">Correo</label><input id="c-c" type="email" autocapitalize="off" autocomplete="username">
-    <button class="oro" id="b-cfg">Continuar</button></div>
+    <button class="boton dorado" id="b-cfg">Continuar</button></div>
 </main>
 
 <main id="v-login" hidden>
-  <div class="tarjeta"><h2>Entrar</h2>
-    <p class="suave">Se escribe una sola vez en este iPhone. La frase es la misma de sincronización del PC y solo sirve para descifrar tu día aquí.</p>
+  <div class="tarjeta"><span class="etq">Entrar</span>
+    <p class="sub" style="margin-bottom:10px">Se escribe una sola vez en este iPhone. La frase es la misma de sincronización del PC y solo sirve para descifrar tu día aquí.</p>
     <label for="l-p">Contraseña de la nube</label><input id="l-p" type="password" autocomplete="current-password">
     <label for="l-f">Frase de sincronización</label><input id="l-f" type="password" autocomplete="off">
-    <button class="oro" id="b-entrar">Entrar</button></div>
+    <button class="boton dorado" id="b-entrar">Entrar</button></div>
 </main>
 
 <main id="v-app" hidden>
   <section id="t-hoy"></section>
   <section id="t-estudio" hidden></section>
   <section id="t-diario" hidden></section>
-  <p class="suave" style="text-align:center;margin-top:24px"><button class="mini" id="b-salir">Cerrar sesión en este iPhone</button></p>
+  <section id="p-ajustes" hidden></section>
+  <section id="p-libros" hidden></section>
+  <section id="p-estadisticas" hidden></section>
+  <section id="p-pase" hidden></section>
+  <section id="p-calendario" hidden></section>
+  <section id="p-temario" hidden></section>
 </main>
 
-<nav id="nav" hidden>
-  <button data-t="hoy" class="activa">Hoy</button><button data-t="estudio">Estudio</button><button data-t="diario">Diario</button>
+<nav class="inferior" id="nav" hidden aria-label="Secciones principales">
+  <button data-t="hoy" class="activa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 2.5 20 5.500v6c0 5-3.400 8.500-8 10-4.600-1.500-8-5-8-10v-6z"/></svg><span>HOY</span></button>
+  <button data-t="estudio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2M9 2.500h6"/></svg><span>ESTUDIO</span></button>
+  <button data-t="diario"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 3h12v18H6zM9 8h6M9 12h6M9 16h4"/></svg><span>DIARIO</span></button>
 </nav>
+
+<div id="velo"></div>
+<aside id="panel" role="dialog" aria-modal="true" aria-label="Menú" aria-hidden="true">
+  <div class="cabp"><img src="icono-192.png" alt="" width="34" height="34"><b>GUARDIAN</b>
+    <button class="icono-btn" id="b-cerrar-panel" aria-label="Cerrar el menú"><svg viewBox="0 0 24 24" fill="none" stroke="#C7D0DE" stroke-width="2" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19"/></svg></button></div>
+  <div class="lista" id="lista-panel"></div>
+  <div class="pie" id="pie-panel"></div>
+</aside>
 
 <script>
 "use strict";
+const VERSION_APP = "0.35.0";
 const LS = {
   leer(k){ try { return JSON.parse(localStorage.getItem(k)); } catch(e){ return null; } },
   poner(k,v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} },
@@ -102,27 +171,59 @@ const LS = {
 };
 const $ = id => document.getElementById(id);
 const VUELTAS = 600000, PREFIJO = "guardian-movil-v1:";
-let cfg = LS.leer("g_cfg"), sesion = LS.leer("g_sesion"), clave = null, datos = null, tab = "hoy", ocupado = false, enPeticion = false;
+let cfg = LS.leer("g_cfg"), sesion = LS.leer("g_sesion"), clave = null, datos = null, actual = "hoy", ocupado = false, enPeticion = false;
+const ui = {mes: 1, dia: "", filtro: "pendientes", rangos: false, confirmarSalir: false};
+const SVGNS = "http://www.w3.org/2000/svg";
 
 /* ---------- utilidades ---------- */
 function el(tag, props, ...hijos){
   const e = document.createElement(tag);
   for (const [k,v] of Object.entries(props || {})){
+    if (v == null || v === false) continue;
     if (k === "class") e.className = v; else if (k === "texto") e.textContent = v; else if (k.startsWith("on")) e.addEventListener(k.slice(2), v); else e.setAttribute(k, v);
   }
-  for (const h of hijos.flat()) if (h != null) e.append(h.nodeType ? h : document.createTextNode(String(h)));
+  for (const h of hijos.flat()) if (h != null && h !== false) e.append(h.nodeType ? h : document.createTextNode(String(h)));
+  return e;
+}
+function sv(tag, props, ...hijos){
+  const e = document.createElementNS(SVGNS, tag);
+  for (const [k,v] of Object.entries(props || {})) e.setAttribute(k, v);
+  for (const h of hijos.flat()) if (h) e.append(h);
   return e;
 }
 const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
 const b64txt = u8 => btoa(String.fromCharCode(...u8));
 function avisar(texto, mal){ const a = $("avisos"); a.replaceChildren(texto ? el("div", {class: "aviso" + (mal ? " mal" : ""), texto}) : ""); }
-function hms(s){ s = Math.max(0, Math.round(s)); const h = Math.floor(s/3600), m = Math.floor(s%3600/60); return h ? `${h} h ${String(m).padStart(2,"0")} min` : `${m} min`; }
+function hms(s){ s = Math.max(0, Math.round(s)); const h = Math.floor(s/3600), m = Math.floor(s%3600/60); return h ? `${h} h ${String(m).padStart(2,"0")}` : `${m} min`; }
 function hace(iso){
   const s = (Date.now() - new Date(iso).getTime())/1000;
   if (!isFinite(s)) return "—"; if (s < 90) return "ahora mismo"; if (s < 3600) return `hace ${Math.round(s/60)} min`;
   if (s < 86400) return `hace ${Math.round(s/3600)} h`; return `hace ${Math.round(s/86400)} d`;
 }
-function vista(cual){ for (const v of ["v-config","v-login","v-app"]) $(v).hidden = v !== cual; $("nav").hidden = cual !== "v-app"; $("b-refrescar").hidden = cual !== "v-app"; }
+const MESES = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+const DIAS_SEM = ["L","M","X","J","V","S","D"];
+function fechaLarga(iso){ const d = new Date(iso + "T12:00:00"); return isFinite(d) ? `${d.getDate()} de ${MESES[d.getMonth()]} de ${d.getFullYear()}` : iso; }
+function fechaCorta(iso){ const d = new Date(iso + "T12:00:00"); return isFinite(d) ? `${d.getDate()} ${MESES[d.getMonth()].slice(0,3)} ${d.getFullYear()}` : iso; }
+function vista(cual){ for (const v of ["v-config","v-login","v-app"]) $(v).hidden = v !== cual; $("nav").hidden = cual !== "v-app"; $("b-menu").hidden = cual !== "v-app"; if (cual !== "v-app") cerrarPanel(); }
+function tarjeta(titulo, ...hijos){ return el("div", {class: "tarjeta"}, titulo ? el("span", {class: "etq", texto: titulo}) : null, ...hijos); }
+function fila(izq, der, extra){ return el("div", {class: "fila" + (extra ? " " + extra : "")}, izq, der); }
+function chip(texto, tipo){ return el("span", {class: "chip " + (tipo || ""), texto}); }
+function barra(pct, oro){ return el("div", {class: "barra" + (oro ? " oro" : "")}, el("i", {style: `width:${Math.max(0, Math.min(100, pct))}%`})); }
+function paginaTitulo(texto){ return el("h2", {class: "titulo-pag", texto}); }
+function sinDatos(que){ return tarjeta(null, el("p", {class: "vacio", texto: `Todavía no hay datos de ${que}. Actualiza Guardian en el PC (v0.35 o superior) y deja la aplicación abierta un minuto.`})); }
+const ICONOS = {
+  ajustes: ["M12 15.500a3.500 3.500 0 1 0 0-7 3.500 3.500 0 0 0 0 7z", "M19.400 15a1.700 1.700 0 0 0 .3 1.800l.1.1a2 2 0 1 1-2.800 2.800l-.1-.1a1.700 1.700 0 0 0-1.800-.3 1.700 1.700 0 0 0-1 1.500V21a2 2 0 1 1-4 0v-.1a1.700 1.700 0 0 0-1.100-1.500 1.700 1.700 0 0 0-1.800.3l-.1.100a2 2 0 1 1-2.800-2.800l.1-.1a1.700 1.700 0 0 0 .3-1.800 1.700 1.700 0 0 0-1.500-1H3a2 2 0 1 1 0-4h.1a1.700 1.700 0 0 0 1.500-1.100 1.700 1.700 0 0 0-.3-1.800l-.1-.1a2 2 0 1 1 2.800-2.800l.1.100a1.700 1.700 0 0 0 1.800.3H9a1.700 1.700 0 0 0 1-1.500V3a2 2 0 1 1 4 0v.1a1.700 1.700 0 0 0 1 1.500 1.700 1.700 0 0 0 1.800-.3l.1-.1a2 2 0 1 1 2.800 2.800l-.1.100a1.700 1.700 0 0 0-.3 1.800V9a1.700 1.700 0 0 0 1.500 1H21a2 2 0 1 1 0 4h-.1a1.700 1.700 0 0 0-1.500 1z"],
+  libros: ["M4 4.500A2.500 2.500 0 0 1 6.500 2H20v17H6.500A2.500 2.500 0 0 0 4 21.500z", "M4 19.500A2.500 2.500 0 0 1 6.500 17H20"],
+  estadisticas: ["M4 20V10M10 20V4M16 20v-7M22 20H2"],
+  pase: ["M12 2l2.900 6 6.600.9-4.800 4.600 1.200 6.500L12 16.800 6.100 20l1.200-6.500L2.500 8.900 9.100 8z"],
+  calendario: ["M3 6h18v15H3zM3 10h18M8 2v4M16 2v4"],
+  temario: ["M8 6h13M8 12h13M8 18h13M3.500 6h.01M3.500 12h.01M3.500 18h.01"]
+};
+function icono(nombre){ return sv("svg", {viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", "stroke-width": "1.8", "aria-hidden": "true"}, ICONOS[nombre].map(d => sv("path", {d}))); }
+const MENU = [
+  ["ajustes", "Ajustes", "Cuenta y cerrar sesión"], ["libros", "Libros leídos", "Tu biblioteca"], ["estadisticas", "Estadísticas", "Rachas, mapa y estudio"],
+  ["pase", "Pase de batalla", "Nivel, rangos y recompensas"], ["calendario", "Calendario", "Eventos y cumpleaños"], ["temario", "Temario", "Temas por estudiar"]
+];
 
 /* ---------- configuración (enlace con # o formulario) ---------- */
 function leerEnlace(hash = location.hash){
@@ -186,61 +287,243 @@ async function entrar(){
   } catch(e){ avisar(e.message, true); } finally { $("b-entrar").disabled = false; }
 }
 
-/* ---------- pintar ---------- */
-function tarjeta(titulo, ...hijos){ return el("div", {class: "tarjeta"}, titulo ? el("h2", {texto: titulo}) : null, ...hijos); }
+/* ---------- pantallas principales (diseño «Mando») ---------- */
 function pintarHoy(){
   const s = $("t-hoy"); s.replaceChildren();
   if (!datos) return;
   const j = datos.juego, n = datos.nivel;
   if (j){
-    const pct = j.limite_min ? Math.min(100, Math.round(j.usado_hoy_s / (j.limite_min*60) * 100)) : 0;
-    s.append(tarjeta("Tiempo de juego",
-      el("div", {class: "fila"}, el("div", {class: "grande", texto: j.activa ? hms(j.restante_s) : "Sin sesión"}), el("span", {class: "chip " + (j.activa ? "ok" : ""), texto: j.activa ? "en juego" : "bloqueado"})),
-      el("div", {class: "barra"}, el("i", {style: `width:${pct}%`})),
-      el("p", {class: "suave", texto: `Hoy has usado ${hms(j.usado_hoy_s)} de ${j.limite_min} min.`}),
-      el("div", {class: "fila"}, el("span", {texto: "Saldo"}), el("b", {texto: `${j.saldo} créditos`})),
-      el("div", {class: "fila"}, el("span", {texto: "Bloque"}), el("span", {class: "suave", texto: `${j.bloque_min} min · ${j.coste_bloque} créditos`})),
-      el("div", {class: "fila"}, el("span", {texto: "Tienda"}), el("span", {class: "chip " + (j.tienda_abierta ? "ok" : "rojo"), texto: j.tienda_abierta ? "abierta" : "cerrada"}))));
+    const limite = (j.limite_min || 0) * 60, usado = j.usado_hoy_s || 0;
+    const restante = j.activa ? j.restante_s : Math.max(0, Math.min(j.disponible_hoy_s || 0, limite - usado));
+    const frac = limite ? Math.max(0, Math.min(1, restante / limite)) : 0;
+    const R = 50, C = 2 * Math.PI * R;
+    const anillo = sv("svg", {width: 116, height: 116, viewBox: "0 0 116 116", role: "img", "aria-label": `Quedan ${Math.round(restante/60)} minutos`},
+      sv("circle", {cx: 58, cy: 58, r: R, fill: "none", stroke: "#1B3558", "stroke-width": 8}),
+      sv("circle", {cx: 58, cy: 58, r: R, fill: "none", stroke: j.activa ? "#C9A84C" : "#6F8FB8", "stroke-width": 8, "stroke-dasharray": C, "stroke-dashoffset": C * (1 - frac), transform: "rotate(-90 58 58)"}),
+      Object.assign(sv("text", {x: 58, y: 62, "text-anchor": "middle", fill: "#E4EAF3", "font-family": "Avenir Next Condensed, Arial Narrow, sans-serif", "font-weight": 700, "font-size": 32}), {textContent: String(Math.round(restante/60))}),
+      Object.assign(sv("text", {x: 58, y: 80, "text-anchor": "middle", fill: "#8EA0BA", "font-size": 11, "letter-spacing": 2}), {textContent: j.activa ? "MIN" : "DISPON."}));
+    s.append(el("div", {class: "tarjeta heroe"},
+      el("span", {class: "etq", texto: j.activa ? "Tiempo de juego · en sesión" : "Tiempo de juego · sin sesión"}),
+      el("div", {class: "anillo-fila", style: "margin-top:10px"}, anillo,
+        el("div", {style: "flex:1;min-width:0"},
+          fila(el("span", {class: "sub", texto: "Usado hoy"}), el("b", {texto: `${hms(usado)} / ${hms(limite)}`})),
+          fila(el("span", {class: "sub", texto: "Saldo"}), el("span", {class: "num oro", style: "font-size:22px;line-height:1", texto: `${j.saldo} créditos`})),
+          fila(el("span", {class: "sub", texto: "Bloque"}), el("b", {texto: `${j.bloque_min} min · ${j.coste_bloque} cr.`})),
+          fila(el("span", {class: "sub", texto: "Tienda"}), chip(j.tienda_abierta ? "abierta" : "cerrada", j.tienda_abierta ? "ok" : "rojo"))))));
   }
   if (n){
-    s.append(tarjeta("Nivel",
-      el("div", {class: "fila"}, el("b", {texto: n.nombre}), el("span", {class: "chip oro", texto: `racha ${n.racha}`})),
-      el("div", {class: "barra"}, el("i", {style: `width:${n.porcentaje}%`})),
-      el("div", {class: "fila"}, el("span", {texto: "Anki"}), el("span", {class: "chip " + (n.anki ? "ok" : ""), texto: n.requisitos.includes("anki") ? (n.anki ? "hecho" : "pendiente") : "descanso"})),
-      el("div", {class: "fila"}, el("span", {texto: "Strava"}), el("span", {class: "chip " + (n.strava ? "ok" : ""), texto: n.requisitos.includes("strava") ? (n.strava ? "hecho" : "pendiente") : "descanso"}))));
+    const req = x => n.requisitos.includes(x);
+    const obj = (x, nombre) => el("div", {style: "display:flex;gap:8px;align-items:center;justify-content:space-between"}, el("span", {class: "sub", texto: nombre}),
+      chip(req(x) ? (n[x] ? "hecho" : "pendiente") : "descanso", req(x) && n[x] ? "ok" : ""));
+    s.append(el("div", {class: "rejilla2"},
+      el("div", {class: "tarjeta"}, el("span", {class: "etq", texto: "Nivel"}), el("div", {class: "num", style: "font-size:20px", texto: n.nombre}), barra(n.porcentaje)),
+      el("div", {class: "tarjeta"}, el("span", {class: "etq", texto: "Objetivos"}), el("div", {style: "display:flex;flex-direction:column;gap:6px"}, obj("anki", "Anki"), obj("strava", "Strava")))));
   }
   if (datos.tareas){
     const hechas = datos.tareas.filter(t => t.hecha).length;
     const filas = datos.tareas.map(t => el("div", {class: "fila tarea" + (t.hecha ? " hecha" : "")},
-      el("div", {class: "marca", texto: t.hecha ? "✓" : ""}),
-      el("div", {class: "nombre"}, el("span", {class: "tn", texto: t.nombre}), el("div", {class: "suave", texto: t.estudio ? `Estudio · ${t.minutos} min` : (t.manual ? "Manual" : "Automática") + (t.recompensa ? ` · ${t.recompensa} cr.` : "")})),
-      (t.manual && !t.hecha) ? el("button", {class: "mini oro", onclick: ev => tachar(t, ev.currentTarget)}, "Tachar") : null));
-    s.append(tarjeta(`Tareas de hoy · ${hechas}/${datos.tareas.length}`, filas.length ? filas : el("p", {class: "suave", texto: "Hoy no hay tareas."})));
+      el("div", {class: "marca-t"}, t.hecha ? sv("svg", {width: 14, height: 14, viewBox: "0 0 14 14", "aria-hidden": "true"}, sv("path", {d: "M2.5 7.5 5.500 10.500 11.500 3.500", fill: "none", stroke: "#0A1424", "stroke-width": 2})) : null),
+      el("div", {class: "nombre"}, el("span", {class: "tn", texto: t.nombre}), el("div", {class: "sub", texto: t.estudio ? `Estudio · ${t.minutos} min` : (t.manual ? "Manual" : "Automática") + (t.recompensa ? ` · ${t.recompensa} cr.` : "")})),
+      (t.manual && !t.hecha) ? el("button", {class: "boton dorado mini", onclick: ev => tachar(t, ev.currentTarget)}, "Tachar") : null));
+    s.append(tarjeta(`Tareas de hoy · ${hechas}/${datos.tareas.length}`, filas.length ? filas : el("p", {class: "vacio", texto: "Hoy no hay tareas."})));
   }
 }
 function pintarEstudio(){
   const s = $("t-estudio"); s.replaceChildren(); const e = datos && datos.estudio;
-  if (!e) { s.append(tarjeta("Estudio de hoy", el("p", {class: "suave", texto: "Sin datos de Pomodoro."}))); return; }
-  if (!e.hay){ s.append(tarjeta("Estudio de hoy", el("div", {class: "grande", texto: "0"}), el("p", {class: "suave", texto: "No estudiaste todavía. Este registro se guarda igualmente."}))); return; }
-  s.append(tarjeta("Estudio de hoy",
-    el("div", {class: "grande", texto: e.estudio}),
-    el("p", {class: "suave", texto: `${e.pomodoros} pomodoros · de ${e.inicio} a ${e.fin}`}),
-    el("div", {class: "fila"}, el("span", {texto: "Descansos"}), el("span", {class: "chip " + (e.clase || "ok"), texto: e.exceso > 2 ? `+${e.exceso} min` : "en su sitio"})),
-    el("div", {class: "fila"}, el("span", {class: "suave", texto: "Real / previsto"}), el("span", {texto: `${e.descanso_real} / ${e.descanso_previsto} min`}))));
-  s.append(tarjeta("Pomodoros", e.filas.map(f => el("div", {class: "fila"}, el("span", {texto: `${f.n}. ${f.inicio}–${f.fin}`}), el("span", {class: "suave", texto: `${f.min} min`}), el("span", {class: "chip " + (f.clase || ""), texto: f.resultado})))));
+  if (!e) { s.append(tarjeta("Estudio de hoy", el("p", {class: "vacio", texto: "Sin datos de Pomodoro."}))); return; }
+  if (!e.hay){ s.append(el("div", {class: "tarjeta heroe"}, el("span", {class: "etq", texto: "Estudio de hoy"}), el("div", {class: "num", style: "font-size:44px", texto: "0"}), el("p", {class: "sub", texto: "No estudiaste todavía. Este registro se guarda igualmente."}))); return; }
+  s.append(el("div", {class: "tarjeta heroe"}, el("span", {class: "etq", texto: "Estudio de hoy"}),
+    el("div", {class: "num oro", style: "font-size:44px;line-height:1.1", texto: e.estudio}),
+    el("p", {class: "sub", texto: `${e.pomodoros} pomodoros · de ${e.inicio} a ${e.fin}`}),
+    fila(el("span", {texto: "Descansos"}), chip(e.exceso > 2 ? `+${e.exceso} min` : "en su sitio", e.clase || "ok")),
+    fila(el("span", {class: "sub", texto: "Real / previsto"}), el("span", {texto: `${e.descanso_real} / ${e.descanso_previsto} min`}))));
+  s.append(tarjeta("Pomodoros", e.filas.map(f => fila(el("span", {texto: `${f.n}. ${f.inicio}–${f.fin}`}), el("span", {class: "sub", texto: `${f.min} min`}), "")).map((x, i) => { x.append(chip(e.filas[i].resultado, e.filas[i].clase)); return x; })));
 }
 function pintarDiario(){
   const s = $("t-diario"); s.replaceChildren();
   const aud = (datos && datos.auditorias) || [], ent = datos && datos.diario && datos.diario.entradas || [];
-  const campo = (et, tx) => tx ? [el("div", {class: "etq", texto: et}), el("div", {class: "texto", texto: tx})] : [];
-  s.append(el("p", {class: "suave", texto: "Solo lectura: se escribe en el PC."}));
+  const campo = (et, tx) => tx ? [el("div", {class: "etq", style: "margin-top:10px", texto: et}), el("div", {class: "texto", texto: tx})] : [];
+  s.append(el("p", {class: "sub", style: "padding:8px 0", texto: "Solo lectura: se escribe en el PC."}));
   for (const a of aud) s.append(tarjeta(`Auditoría ${a.inicio} → ${a.fin}`, campo("Qué funcionó", a.funciono), campo("Qué cambiar", a.cambiar), campo("Objetivos", a.objetivos)));
-  if (!ent.length) s.append(tarjeta("Diario", el("p", {class: "suave", texto: "Aún no hay entradas."})));
-  for (const e of ent) s.append(tarjeta(e.titulo, el("span", {class: "suave", texto: `${e.fecha}${e.animo ? ` · ánimo ${e.animo}/5` : ""}${e.energia ? ` · energía ${e.energia}/5` : ""}`}),
+  if (!ent.length) s.append(tarjeta("Diario", el("p", {class: "vacio", texto: "Aún no hay entradas."})));
+  for (const e of ent) s.append(tarjeta(e.titulo, el("span", {class: "sub", texto: `${e.fecha}${e.animo ? ` · ánimo ${e.animo}/5` : ""}${e.energia ? ` · energía ${e.energia}/5` : ""}`}),
     campo("Logros", e.logros), campo("Obstáculos", e.obstaculos), campo("Misión de mañana", e.manana)));
 }
-function pintar(){ pintarHoy(); pintarEstudio(); pintarDiario(); pintarHora(); }
-function pintarHora(){ const a = $("actualizado"); a.textContent = datos ? "Actualizado " + hace(datos.creado) : "Sin datos todavía"; }
+
+/* ---------- páginas del panel lateral ---------- */
+function pintarAjustes(){
+  const s = $("p-ajustes"); s.replaceChildren(paginaTitulo("Ajustes"));
+  const sal = ui.confirmarSalir
+    ? el("div", {}, el("p", {class: "sub", style: "margin-bottom:10px", texto: "Se borrará la sesión y la clave de este iPhone. Para volver a entrar necesitarás tu contraseña y tu frase."}),
+        el("div", {style: "display:flex;gap:10px"}, el("button", {class: "boton", style: "flex:1", onclick: () => { ui.confirmarSalir = false; pintarAjustes(); }}, "Cancelar"),
+          el("button", {class: "boton dorado", style: "flex:1", id: "b-salir-ok", onclick: cerrarSesion}, "Cerrar sesión")))
+    : el("button", {class: "boton", id: "b-salir", onclick: () => { ui.confirmarSalir = true; pintarAjustes(); }}, "Cerrar sesión en este iPhone");
+  s.append(
+    tarjeta("Cuenta", fila(el("span", {class: "sub", texto: "Correo"}), el("span", {style: "overflow-wrap:anywhere;text-align:right", texto: cfg ? cfg.c : "—"})),
+      fila(el("span", {class: "sub", texto: "Foto del PC"}), el("span", {texto: datos ? hace(datos.creado) : "—"})),
+      fila(el("span", {class: "sub", texto: "Se refresca"}), el("span", {texto: "cada 20 s"})),
+      el("button", {class: "boton mini", id: "b-refrescar", style: "margin-top:12px", onclick: () => { avisar("Actualizando…"); cargar(); }}, "Actualizar ahora"),
+      fila(el("span", {class: "sub", texto: "Versión de la app"}), el("span", {texto: VERSION_APP}))),
+    tarjeta("Avisos", el("p", {class: "sub", texto: "Los avisos llegan con la app ntfy. Cuáles recibes, y a qué hora, se elige en Guardian (PC): Ajustes → Perfil → iPhone…"})),
+    tarjeta("Sesión", sal));
+}
+function cerrarSesion(){ for (const k of ["g_sesion","g_ultimo"]) LS.quitar(k); sesion = null; clave = null; datos = null; ui.confirmarSalir = false; vista("v-login"); }
+
+function estrellas(n){ return "★".repeat(n) + "☆".repeat(5 - n); }
+function pintarLibros(){
+  const s = $("p-libros"); s.replaceChildren(paginaTitulo("Libros leídos")); const l = datos && datos.libros;
+  if (!l) { s.append(sinDatos("libros")); return; }
+  if (l.anios.length) s.append(el("div", {class: "rejilla2"}, l.anios.slice(0, 4).map(a => el("div", {class: "tarjeta"}, el("span", {class: "etq", texto: a.anio}),
+    el("div", {class: "num oro", style: "font-size:28px;line-height:1.1", texto: `${a.libros} ${a.libros === 1 ? "libro" : "libros"}`}), el("div", {class: "sub", texto: `${a.paginas.toLocaleString("es-ES")} páginas`})))));
+  if (l.leyendo.length) s.append(tarjeta("Leyendo ahora", l.leyendo.map(b => el("div", {class: "fila", style: "display:block"}, fila(el("b", {texto: b.t}), el("span", {class: "num oro", texto: b.pct + "%"})),
+    el("div", {class: "sub", texto: `${b.a || "Autor desconocido"} · pág. ${b.act} de ${b.p}`}), barra(b.pct, true)))));
+  if (!l.leidos.length) { s.append(tarjeta(null, el("p", {class: "vacio", texto: "Todavía no hay libros terminados."}))); return; }
+  const porAnio = new Map();
+  for (const b of l.leidos){ const a = (b.f || "").slice(0, 4) || "Sin fecha"; if (!porAnio.has(a)) porAnio.set(a, []); porAnio.get(a).push(b); }
+  for (const [a, lista] of porAnio) s.append(tarjeta(`${a} · ${lista.length}`, lista.map(b => el("div", {class: "fila", style: "align-items:flex-start"},
+    el("div", {style: "min-width:0"}, el("div", {style: "font-weight:500;overflow-wrap:anywhere", texto: b.t}), el("div", {class: "sub", texto: `${b.a || "Autor desconocido"} · ${b.p} págs.${b.g ? " · " + b.g : ""}`})),
+    el("div", {style: "text-align:right;flex:none"}, b.v ? el("div", {class: "oro", style: "letter-spacing:1px;font-size:13px", "aria-label": `${b.v} de 5`, texto: estrellas(b.v)}) : null,
+      el("div", {class: "sub", texto: b.f ? fechaCorta(b.f) : ""}))))));
+}
+
+const COLOR_MAPA = {p: "#4FAE7F", a: "#C9A84C", f: "#9B4A4A", c: "#6F8FB8", s: "#1B3558", u: "#12233D"};
+function pintarEstadisticas(){
+  const s = $("p-estadisticas"); s.replaceChildren(paginaTitulo("Estadísticas")); const e = datos && datos.estadisticas;
+  if (!e) { s.append(sinDatos("estadísticas")); return; }
+  s.append(el("div", {class: "rejilla2"},
+    el("div", {class: "tarjeta"}, el("span", {class: "etq", texto: "Racha actual"}), el("div", {class: "num oro", style: "font-size:34px;line-height:1.1", texto: `${e.racha} d`}), el("div", {class: "sub", texto: `máxima ${e.racha_max} d`})),
+    el("div", {class: "tarjeta"}, el("span", {class: "etq", texto: `Perfectos ${e.anio}`}), el("div", {class: "num", style: "font-size:34px;line-height:1.1", texto: String(e.perfectos)}), el("div", {class: "sub", texto: `de ${e.con_datos} días cerrados`}))));
+  const inicio = (new Date(e.anio, 0, 1).getDay() + 6) % 7, cols = Math.ceil((inicio + e.mapa.length) / 7), T = 7;
+  const g = sv("svg", {class: "graf", viewBox: `0 0 ${cols * T} ${7 * T}`, role: "img", "aria-label": "Mapa de días perfectos del año"});
+  for (let i = 0; i < e.mapa.length; i++){ const k = i + inicio; g.append(sv("rect", {x: Math.floor(k / 7) * T, y: (k % 7) * T, width: T - 1.2, height: T - 1.2, rx: 1, fill: COLOR_MAPA[e.mapa[i]] || COLOR_MAPA.s})); }
+  const leyenda = [["p", "perfecto"], ["a", "parcial"], ["f", "fallado"], ["s", "sin datos"]].map(([k, t]) => el("span", {class: "sub", style: "display:inline-flex;align-items:center;gap:5px;margin-right:12px"},
+    el("i", {style: `width:10px;height:10px;border-radius:2px;background:${COLOR_MAPA[k]};display:inline-block`}), t));
+  s.append(tarjeta(`Mapa de ${e.anio}`, g, el("div", {style: "margin-top:10px"}, leyenda)));
+  const max = Math.max(60, ...e.estudio14.map(x => x.m)), W = 14 * 22, H = 90;
+  const barras = sv("svg", {class: "graf", viewBox: `0 0 ${W} ${H + 16}`, role: "img", "aria-label": "Minutos de estudio de los últimos 14 días"});
+  e.estudio14.forEach((x, i) => {
+    const h = Math.round(x.m / max * H);
+    barras.append(sv("rect", {x: i * 22 + 3, y: H - h, width: 16, height: Math.max(h, 1), fill: x.m ? "#C9A84C" : "#1B3558"}));
+    barras.append(Object.assign(sv("text", {x: i * 22 + 11, y: H + 12, "text-anchor": "middle", fill: "#8EA0BA", "font-size": 8}), {textContent: String(Number(x.f.slice(8)))}));
+  });
+  const total = e.estudio14.reduce((a, x) => a + x.m, 0);
+  s.append(tarjeta("Estudio · últimos 14 días", barras, el("p", {class: "sub", style: "margin-top:8px", texto: `Total ${hms(total * 60)} · media ${Math.round(total / 14)} min al día`})));
+  const t = datos.temario, l = datos.libros;
+  if (t || l) s.append(el("div", {class: "rejilla2"},
+    t ? el("div", {class: "tarjeta"}, el("span", {class: "etq", texto: "Temario"}), el("div", {class: "num", style: "font-size:30px;line-height:1.1", texto: `${t.pct}%`}), el("div", {class: "sub", texto: `${t.estudiados} de ${t.total} temas`}), barra(t.pct, true)) : null,
+    l ? el("div", {class: "tarjeta"}, el("span", {class: "etq", texto: "Libros"}), el("div", {class: "num", style: "font-size:30px;line-height:1.1", texto: String(l.leidos.length)}), el("div", {class: "sub", texto: "terminados"})) : null));
+}
+
+function pintarPase(){
+  const s = $("p-pase"); s.replaceChildren(paginaTitulo("Pase de batalla")); const p = datos && datos.pase;
+  if (!p) { s.append(sinDatos("pase de batalla")); return; }
+  s.append(el("div", {class: "tarjeta heroe"}, el("span", {class: "etq", texto: "Nivel actual"}),
+    el("div", {class: "fila", style: "align-items:baseline"}, el("div", {class: "num", style: "font-size:36px;line-height:1.1", texto: String(p.nivel)}), el("b", {class: "oro", style: "text-align:right", texto: `${p.rango} ${p.romano}`})),
+    barra(p.pct, true), el("p", {class: "sub", style: "margin-top:8px", texto: p.texto_xp}), el("p", {class: "sub", texto: p.ritmo})));
+  if (p.proxima) s.append(tarjeta("Próxima recompensa", el("div", {style: "font-weight:600;overflow-wrap:anywhere", texto: p.proxima.titulo}), el("div", {class: "sub", texto: p.proxima.faltan}), p.proxima.fecha ? el("div", {class: "sub", texto: p.proxima.fecha}) : null));
+  if (p.hitos.length) s.append(tarjeta("Hitos", p.hitos.map(([a, b]) => fila(el("span", {texto: a}), el("span", {class: "sub", texto: b})))));
+  const idx = Math.max(0, p.rangos.findIndex(r => r.actual) - 1), lista = ui.rangos ? p.rangos : p.rangos.slice(idx, idx + 8);
+  s.append(tarjeta("Rangos", lista.map(r => fila(el("span", {style: r.actual ? "color:#C9A84C;font-weight:600" : (r.pasado ? "color:#8EA0BA" : "")}, `${r.n}. ${r.nombre}`),
+    el("span", {class: "sub", texto: `niv. ${r.desde}–${r.hasta}`}), "")),
+    el("button", {class: "boton mini", style: "margin-top:10px", onclick: () => { ui.rangos = !ui.rangos; pintarPase(); }}, ui.rangos ? "Ver menos" : "Ver los 26 rangos")));
+  const tipo = e => e === "POR CANJEAR" ? "oro" : (e === "CANJEADA" ? "ok" : "");
+  if (p.premios.length) s.append(tarjeta("Recompensas por nivel", el("p", {class: "sub", style: "margin-bottom:6px", texto: p.resumen}), p.premios.map(x => el("div", {class: "fila", style: "align-items:flex-start"},
+    el("div", {style: "min-width:0"}, el("div", {style: "overflow-wrap:anywhere", texto: x.titulo}), el("div", {class: "sub", texto: x.cuando})), chip(x.estado.toLowerCase(), tipo(x.estado))))));
+  if (p.metas.length) s.append(tarjeta("Metas", p.metas.map(m => el("div", {class: "fila", style: "display:block"}, fila(el("b", {style: "overflow-wrap:anywhere", texto: m.titulo}), chip(m.estado.toLowerCase(), tipo(m.estado))),
+    el("div", {class: "sub", texto: `${m.req} · ${m.prog}`}), barra(m.pct, m.dorada)))));
+  s.append(el("p", {class: "sub", style: "padding:6px 2px", texto: "Las recompensas se canjean en Guardian, en el PC."}));
+}
+
+function pintarCalendario(){
+  const s = $("p-calendario"); s.replaceChildren(paginaTitulo("Calendario")); const c = datos && datos.calendario;
+  if (!c) { s.append(sinDatos("calendario")); return; }
+  const m = c.meses[Math.max(0, Math.min(c.meses.length - 1, ui.mes))], hoy = datos.hoy;
+  const porDia = new Map();
+  for (const ev of m.eventos){
+    const fin = ev.fin && ev.fin > ev.fecha ? ev.fin : ev.fecha;
+    for (let d = new Date(ev.fecha + "T12:00:00"), n = 0; n < 62; d.setDate(d.getDate() + 1), n++){
+      const iso = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+      if (iso > fin) break;
+      if (!porDia.has(iso)) porDia.set(iso, []); porDia.get(iso).push(ev);
+    }
+  }
+  const primero = (new Date(m.y, m.m - 1, 1).getDay() + 6) % 7, dias = new Date(m.y, m.m, 0).getDate();
+  const iso = d => `${m.y}-${String(m.m).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
+  if (!ui.dia || !ui.dia.startsWith(`${m.y}-${String(m.m).padStart(2, "0")}`)) ui.dia = hoy.startsWith(`${m.y}-${String(m.m).padStart(2, "0")}`) ? hoy : iso(1);
+  const celdas = DIAS_SEM.map(d => el("div", {class: "dsem", texto: d}));
+  for (let i = 0; i < primero; i++) celdas.push(el("button", {class: "vacio-d", tabindex: "-1", "aria-hidden": "true"}));
+  for (let d = 1; d <= dias; d++){
+    const f = iso(d), evs = porDia.get(f) || [];
+    celdas.push(el("button", {class: (f === hoy ? "hoy " : "") + (f === ui.dia ? "sel" : ""), "aria-label": `${d} de ${MESES[m.m - 1]}${evs.length ? `, ${evs.length} eventos` : ""}`, onclick: () => { ui.dia = f; pintarCalendario(); }},
+      el("span", {texto: String(d)}), el("span", {class: "puntos"}, evs.slice(0, 3).map(e => el("i", {class: e.tipo === "cumpleanos" ? "c" : (e.tipo === "dia_libre" || e.tipo === "viaje" ? "l" : "")})))));
+  }
+  const nav = el("div", {class: "fila"}, el("button", {class: "icono-btn", "aria-label": "Mes anterior", disabled: ui.mes <= 0 ? "" : null, onclick: () => { ui.mes--; pintarCalendario(); }}, "‹"),
+    el("b", {style: "font-family:var(--cond);font-size:20px;letter-spacing:.08em;text-transform:uppercase", texto: `${MESES[m.m - 1]} ${m.y}`}),
+    el("button", {class: "icono-btn", "aria-label": "Mes siguiente", disabled: ui.mes >= c.meses.length - 1 ? "" : null, onclick: () => { ui.mes++; pintarCalendario(); }}, "›"));
+  s.append(tarjeta(null, nav, el("div", {class: "cal"}, celdas)));
+  const del = porDia.get(ui.dia) || [];
+  const nombreTipo = {evento: "Evento", cumpleanos: "Cumpleaños", dia_libre: "Día libre", viaje: "Viaje"};
+  s.append(tarjeta(fechaLarga(ui.dia), del.length ? del.map(e => el("div", {class: "fila", style: "align-items:flex-start"},
+    el("div", {style: "min-width:0"}, el("div", {style: "font-weight:500;overflow-wrap:anywhere", texto: e.titulo + (e.tipo === "cumpleanos" && e.anios ? ` (${e.anios})` : "")}),
+      el("div", {class: "sub", texto: (nombreTipo[e.tipo] || e.tipo) + (e.fin && e.fin > e.fecha ? ` · hasta ${fechaCorta(e.fin)}` : "")})), e.hora ? chip(e.hora, "oro") : null))
+    : el("p", {class: "vacio", texto: "Nada este día."})));
+  s.append(el("p", {class: "sub", style: "padding:6px 2px", texto: "Solo lectura: los eventos se crean en Guardian, en el PC."}));
+}
+
+const CATEGORIAS = {juridicas: "Jurídicas", sociales: "Sociales", tecnico: "Técnico-científicas"};
+function pintarTemario(){
+  const s = $("p-temario"); s.replaceChildren(paginaTitulo("Temario")); const t = datos && datos.temario;
+  if (!t) { s.append(sinDatos("temario")); return; }
+  s.append(el("div", {class: "tarjeta heroe"}, el("span", {class: "etq", texto: "Progreso"}),
+    el("div", {class: "fila", style: "align-items:baseline"}, el("div", {class: "num oro", style: "font-size:40px;line-height:1.1", texto: `${t.pct}%`}), el("span", {class: "sub", texto: `${t.estudiados} de ${t.total} temas · ${t.vueltas} vueltas`})), barra(t.pct, true)));
+  const pend = t.temas.filter(x => !x.est).length;
+  const filtros = [["pendientes", `Por estudiar · ${pend}`], ["estudiados", `Estudiados · ${t.estudiados}`], ["todos", "Todos"]];
+  s.append(el("div", {class: "filtros"}, filtros.map(([k, txt]) => el("button", {class: ui.filtro === k ? "activa" : "", onclick: () => { ui.filtro = k; pintarTemario(); }}, txt))));
+  const ver = t.temas.filter(x => ui.filtro === "todos" || (ui.filtro === "pendientes" ? !x.est : x.est));
+  if (!ver.length) { s.append(tarjeta(null, el("p", {class: "vacio", texto: ui.filtro === "pendientes" ? "¡No te queda ningún tema por estudiar!" : "Aún no hay temas en esta lista."}))); return; }
+  const grupos = new Map();
+  for (const x of ver){ if (!grupos.has(x.cat)) grupos.set(x.cat, []); grupos.get(x.cat).push(x); }
+  for (const [cat, lista] of grupos) s.append(tarjeta(`${CATEGORIAS[cat] || cat} · ${lista.length}`, lista.map(x => el("div", {class: "fila tarea" + (x.est ? " hecha" : "")},
+    el("div", {class: "marca-t"}, x.est ? sv("svg", {width: 14, height: 14, viewBox: "0 0 14 14", "aria-hidden": "true"}, sv("path", {d: "M2.5 7.5 5.500 10.500 11.500 3.500", fill: "none", stroke: "#0A1424", "stroke-width": 2})) : null),
+    el("div", {class: "nombre"}, el("span", {class: "sub", texto: `Tema ${x.n} · `}), el("span", {class: "tn", texto: x.nombre})), x.v ? chip(`${x.v} ${x.v === 1 ? "vuelta" : "vueltas"}`, "oro") : null))));
+  s.append(el("p", {class: "sub", style: "padding:6px 2px", texto: "Solo lectura: los temas se marcan en Guardian, en el PC."}));
+}
+
+const PINTORES = {hoy: pintarHoy, estudio: pintarEstudio, diario: pintarDiario, ajustes: pintarAjustes, libros: pintarLibros, estadisticas: pintarEstadisticas, pase: pintarPase, calendario: pintarCalendario, temario: pintarTemario};
+const PESTANAS = ["hoy", "estudio", "diario"];
+function prefijo(k){ return PESTANAS.includes(k) ? "t-" : "p-"; }
+function pintar(){
+  for (const k of Object.keys(PINTORES)) { try { PINTORES[k](); } catch(e){ const s = $(prefijo(k) + k); s.replaceChildren(tarjeta(null, el("p", {class: "vacio", texto: "No se pudo pintar esta sección."}))); } }
+  pintarCabecera();
+}
+function pintarCabecera(){
+  $("actualizado").textContent = datos ? "Actualizado " + hace(datos.creado) : "Sin datos todavía";
+  const r = datos && datos.nivel ? datos.nivel.racha : null;
+  $("chip-racha").hidden = r == null; if (r != null) $("chip-racha").textContent = `RACHA ${r}`;
+}
+function ir(k){
+  actual = k;
+  for (const x of Object.keys(PINTORES)) $(prefijo(x) + x).hidden = x !== k;
+  for (const b of $("nav").children) b.classList.toggle("activa", b.dataset.t === k);
+  construirPanel(); cerrarPanel(); window.scrollTo(0, 0);
+}
+
+/* ---------- panel lateral ---------- */
+let focoPrevio = null;
+function construirPanel(){
+  $("lista-panel").replaceChildren(...MENU.map(([k, t, d]) => el("button", {class: "item" + (actual === k ? " activa" : ""), "data-p": k, onclick: () => ir(k)},
+    icono(k), el("span", {}, el("span", {class: "t", texto: t}), el("span", {class: "d", texto: d})))));
+  $("pie-panel").textContent = `App ${VERSION_APP}` + (datos ? ` · PC ${hace(datos.creado)}` : "");
+}
+function abrirPanel(){
+  focoPrevio = document.activeElement; construirPanel();
+  $("panel").classList.add("abierto"); $("velo").classList.add("abierto"); document.body.classList.add("panel-abierto"); $("panel").setAttribute("aria-hidden", "false");
+  setTimeout(() => { const p = $("lista-panel").querySelector(".item"); if (p) p.focus(); }, 60);
+}
+function cerrarPanel(){
+  $("panel").classList.remove("abierto"); $("velo").classList.remove("abierto"); document.body.classList.remove("panel-abierto"); $("panel").setAttribute("aria-hidden", "true");
+  if (focoPrevio && focoPrevio.focus) { try { focoPrevio.focus(); } catch(e){} } focoPrevio = null;
+}
 
 /* ---------- datos ---------- */
 async function cargar(){
@@ -248,7 +531,7 @@ async function cargar(){
   try {
     const filas = await api("/rest/v1/movil_estado?select=datos,actualizado");
     if (!filas || !filas.length) { avisar("El PC todavía no ha publicado nada. Abre Guardian en el PC y activa «iPhone…».", true); return; }
-    const d = await descifrar(filas[0].datos); datos = d; LS.poner("g_ultimo", filas[0].datos); avisar(""); pintar();
+    const d = await descifrar(filas[0].datos); datos = d; LS.poner("g_ultimo", filas[0].datos); avisar(""); pintar(); construirPanel();
   } catch(e){
     const guardado = LS.leer("g_ultimo");
     if (guardado && clave && !datos){ try { datos = await descifrar(guardado); pintar(); } catch(_){} }
@@ -276,7 +559,7 @@ async function tachar(t, boton){
 }
 
 /* ---------- arranque ---------- */
-async function abrirApp(){ vista("v-app"); pintar(); await cargar(); }
+async function abrirApp(){ vista("v-app"); ir(actual); pintar(); await cargar(); }
 async function arrancar(){
   const e = leerEnlace(); if (e && guardarCfg(e)) { sesion = null; clave = null; LS.quitar("g_sesion"); }
   if (!cfg) { vista("v-config"); return; }
@@ -289,13 +572,13 @@ $("b-cfg").onclick = () => { if (guardarCfg({u: $("c-u").value.trim().replace(/\
 $("b-pegar").onclick = () => { const e = leerEnlace($("c-e").value.trim()); if (!e) { avisar("Ese enlace no es válido: cópialo entero desde Guardian en el PC.", true); return; }
   if (guardarCfg(e)) { avisar(""); vista("v-login"); } };
 $("b-entrar").onclick = entrar;
-$("b-refrescar").onclick = cargar;
-$("b-salir").onclick = () => { for (const k of ["g_sesion","g_ultimo"]) LS.quitar(k); sesion = null; clave = null; datos = null; vista("v-login"); };
-$("nav").onclick = ev => { const b = ev.target.closest("button"); if (!b) return; tab = b.dataset.t;
-  for (const x of $("nav").children) x.classList.toggle("activa", x === b);
-  for (const t of ["hoy","estudio","diario"]) $("t-" + t).hidden = t !== tab; window.scrollTo(0, 0); };
+$("b-menu").onclick = abrirPanel;
+$("b-cerrar-panel").onclick = cerrarPanel;
+$("velo").onclick = cerrarPanel;
+document.addEventListener("keydown", ev => { if (ev.key === "Escape") cerrarPanel(); });
+$("nav").onclick = ev => { const b = ev.target.closest("button"); if (b) ir(b.dataset.t); };
 setInterval(() => { if (!document.hidden && !$("v-app").hidden) cargar(); }, 20000);
-setInterval(pintarHora, 30000);
+setInterval(pintarCabecera, 30000);
 document.addEventListener("visibilitychange", () => { if (!document.hidden && !$("v-app").hidden) cargar(); });
 if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(() => {});
 arrancar();
