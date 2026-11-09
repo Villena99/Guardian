@@ -1,5 +1,5 @@
 // Guardian móvil: guarda solo la «carcasa» de la app para abrirla sin conexión. Los datos nunca pasan por aquí.
-const V = "guardian-movil-2";
+const V = "guardian-movil-3";
 const CARCASA = ["./", "./index.html", "./manifest.webmanifest", "./icono-180.png", "./icono-192.png", "./icono-512.png"];
 self.addEventListener("install", e => { e.waitUntil(caches.open(V).then(c => c.addAll(CARCASA)).then(() => self.skipWaiting())); });
 self.addEventListener("activate", e => {

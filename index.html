@@ -101,6 +101,108 @@ body.panel-abierto{overflow:hidden}
 .filtros button{flex:1;border:1px solid var(--borde2);background:var(--panel);border-radius:4px;padding:9px 6px;min-height:40px;font-size:14px;color:var(--suave)}
 .filtros button.activa{color:var(--oro);border-color:var(--oro);background:#1A1F2A}
 svg.graf{width:100%;height:auto;display:block}
+#celebra{position:fixed;inset:0;background:radial-gradient(circle at 50% 42%,#14284Aee,#070E1Af4 70%);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;z-index:40;opacity:0;animation:fin .35s forwards}
+@keyframes fin{to{opacity:1}}
+#celebra .t1{font-family:'Barlow Condensed',sans-serif;letter-spacing:.3em;font-size:14px;color:var(--oro);opacity:0;animation:up .6s .9s forwards}
+#celebra .t2{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:38px;line-height:1.05;opacity:0;animation:up .6s 1.15s forwards;margin-top:6px}
+#celebra .t3{font-size:14px;color:var(--suave);margin-top:8px;opacity:0;animation:up .6s 1.5s forwards}
+#celebra .hint{position:absolute;bottom:18px;font-size:12px;color:var(--suave);opacity:0;animation:fin .5s 3s forwards}
+@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+#celebra .sh{animation:pop .9s cubic-bezier(.2,1.4,.4,1) .1s both}
+@keyframes pop{from{transform:scale(.2) rotate(-12deg);opacity:0}to{transform:none;opacity:1}}
+#celebra .burst{position:absolute;width:120px;height:120px;border-radius:50%;border:2px solid var(--oro);opacity:0;animation:burst 1.2s .5s ease-out forwards}
+@keyframes burst{0%{transform:scale(.6);opacity:.9}100%{transform:scale(3.2);opacity:0}}
+#celebra .rays{position:absolute;width:260px;height:260px;opacity:0;animation:fin 1s .4s forwards,spin 14s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+#celebra .xp{width:210px;height:8px;background:var(--panel3);border-radius:4px;overflow:hidden;margin-top:18px;opacity:0;animation:fin .4s 1.6s forwards}
+#celebra .xp i{display:block;height:100%;width:0;background:linear-gradient(90deg,#C7D0DE,#C9A84C);animation:fill 1.1s 1.8s ease-out forwards}
+@keyframes fill{to{width:100%}}
+#celebra .spark{position:absolute;width:6px;height:6px;border-radius:50%;background:var(--oro);opacity:0;animation:spark 1.4s .6s ease-out forwards}
+@keyframes spark{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(var(--x),var(--y)) scale(.2);opacity:0}}
+.draw{stroke-dasharray:24;stroke-dashoffset:24;animation:dr .45s .25s forwards}
+@keyframes dr{to{stroke-dashoffset:0}}
+.boxok{animation:boxok .3s .15s forwards}
+@keyframes boxok{to{background:var(--ok);border-color:var(--ok)}}
+.strike{animation:strike .4s .5s forwards}
+@keyframes strike{to{color:var(--suave);text-decoration:line-through}}
+.plus{position:absolute;right:6px;top:2px;font-family:var(--cond);font-weight:700;font-size:22px;color:var(--oro);opacity:0;animation:plus 1.2s .55s ease-out forwards;pointer-events:none}
+@keyframes plus{0%{opacity:0;transform:translateY(6px)}30%{opacity:1}100%{opacity:0;transform:translateY(-34px)}}
+#celebra .ringc{stroke-dasharray:314;stroke-dashoffset:314;animation:ring 1.4s .3s ease-out forwards}
+@keyframes ring{to{stroke-dashoffset:0}}
+#celebra .glow{animation:glow 1.6s 1.6s ease-in-out infinite alternate}
+@keyframes glow{from{filter:drop-shadow(0 0 2px #C9A84C55)}to{filter:drop-shadow(0 0 14px #C9A84Caa)}}
+#celebra .dot{width:26px;height:26px;border-radius:6px;border:1.5px solid #6F8FB8;opacity:0;animation:dotin .3s forwards, dotok .25s forwards}
+@keyframes dotin{to{opacity:1}}
+@keyframes dotok{to{background:var(--ok);border-color:var(--ok)}}
+#celebra .count{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:64px;color:var(--okt);line-height:1}
+#celebra .lock{animation:unlock .6s .5s forwards}
+@keyframes unlock{to{transform:translateY(-6px) rotate(-18deg);opacity:0}}
+#celebra .reward{width:170px;height:200px;border:1px solid var(--oro);border-radius:8px;background:linear-gradient(160deg,#1C3A66,#0F2038);position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;animation:rise .8s .9s cubic-bezier(.2,1.3,.4,1) both}
+@keyframes rise{from{transform:translateY(60px) scale(.8);opacity:0}to{transform:none;opacity:1}}
+#celebra .shine{position:absolute;top:0;bottom:0;width:40px;background:linear-gradient(90deg,transparent,#fff5,transparent);transform:skewX(-20deg);left:-60px;animation:shine 1s 1.8s forwards}
+@keyframes shine{to{left:220px}}
+#celebra .cnum{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:96px;line-height:1;color:var(--texto)}
+#celebra .badge{border:1px solid var(--oro);color:var(--oro);border-radius:3px;padding:3px 10px;font-family:'Barlow Condensed',sans-serif;letter-spacing:.2em;font-size:13px;opacity:0;animation:up .5s 1.4s forwards;margin-top:10px}
+#celebra .flash{position:absolute;inset:0;background:#C9A84C;opacity:0;animation:flash .7s .9s ease-out}
+@keyframes flash{0%{opacity:.45}100%{opacity:0}}
+#celebra .tick{animation:bump .5s .9s both}
+@keyframes bump{0%{transform:scale(1)}40%{transform:scale(1.25);color:#C9A84C}100%{transform:scale(1);color:#C9A84C}}
+#celebra.quieta *{animation-duration:.01s!important;animation-delay:0s!important}
+/* físicas */
+input[type=checkbox]{width:22px;height:22px;margin:0;flex:none;accent-color:#C9A84C}
+.pref{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0;min-height:44px}
+.pref+.pref{border-top:1px solid var(--panel3)}
+button.grande{width:100%;min-height:52px;font-size:17px;font-weight:700}
+button.linea{background:none;border:1px solid var(--borde2);border-radius:4px;padding:9px 12px;min-height:40px;color:var(--plata)}
+.cab-sub{display:flex;align-items:center;gap:10px;padding:8px 0}
+.cab-sub .t{flex:1;min-width:0;font-family:var(--cond);font-weight:700;font-size:22px;letter-spacing:.06em;text-transform:uppercase;overflow-wrap:anywhere}
+.stp{display:flex;align-items:center;gap:5px}
+.stp button{width:38px;height:42px;border:1px solid var(--borde2);background:#0C1A2E;border-radius:6px;font-size:22px;line-height:1;color:var(--plata);padding:0}
+.stp .v{min-width:40px;text-align:center;font-family:var(--cond);font-weight:700;font-size:24px;font-variant-numeric:tabular-nums}
+.stp .u{font-size:11px;color:var(--suave);margin-left:-2px}
+.serie{display:flex;align-items:center;gap:8px;padding:8px 0;border-top:1px solid var(--panel3);flex-wrap:wrap}
+.serie .n{width:16px;color:var(--suave);font-family:var(--cond);font-weight:700;flex:none}
+.serie .resumen{flex:1;min-width:0;color:var(--okt);font-weight:500}
+.serie .et{flex:1 1 100%;font-size:13px;color:var(--suave)}
+.serie input.mini-in{width:84px;margin:0;padding:9px 8px;text-align:center}
+.chk{margin-left:auto;width:44px;height:44px;border-radius:8px;border:1.5px solid var(--acero);background:none;display:grid;place-items:center;padding:0;flex:none}
+.chk.d{background:var(--ok);border-color:var(--ok)}
+.det{display:flex;flex-wrap:wrap;gap:8px;flex:1 1 100%;padding:2px 0 4px 24px}
+.det label{display:flex;flex-direction:column;gap:2px;font-size:11px}
+.det input{width:64px;margin:0;padding:7px 6px;text-align:center}
+.det input.largo{width:150px;text-align:left}
+.ej-cab{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.ej-cab b{overflow-wrap:anywhere}
+.ult{font-size:12px;color:var(--suave);margin-top:4px}
+.barra-progreso{height:5px;background:var(--panel3);margin:6px 0 2px}.barra-progreso i{display:block;height:100%;background:var(--oro)}
+#descanso{position:fixed;left:max(12px,env(safe-area-inset-left));right:max(12px,env(safe-area-inset-right));bottom:calc(env(safe-area-inset-bottom) + 72px);background:#14284A;border:1px solid var(--oro);border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:12px;z-index:8;box-shadow:0 8px 24px #0008}
+#descanso .t{font-family:var(--cond);font-weight:700;font-size:32px;color:var(--oro);font-variant-numeric:tabular-nums;min-width:64px}
+#descanso .d{flex:1;font-size:12px;color:var(--plata);min-width:0}
+#descanso button{background:none;border:1px solid var(--borde2);border-radius:4px;padding:8px 10px;min-height:40px;color:var(--plata)}
+#descanso.fin{animation:parpadeo .5s 4}
+@keyframes parpadeo{50%{background:#3A3010}}
+.semana{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;text-align:center}
+.semana .dia{padding:6px 0;border:1px solid var(--panel3);border-radius:4px;font-size:12px;color:var(--suave)}
+.semana .dia b{display:block;font-family:var(--cond);font-size:15px;color:var(--texto)}
+.semana .dia.hoy{border-color:var(--oro)}
+.semana .dia.ok{background:#17382F;border-color:#2F6B55}
+.semana .dia.ok i{color:var(--okt);font-style:normal}
+.semana .dia i{display:block;height:14px;font-size:12px;line-height:14px;color:var(--oro);font-style:normal}
+.prueba{padding:8px 0}.prueba+.prueba{border-top:1px solid var(--panel3)}
+.estante{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 10px;padding:4px 2px 10px;border-bottom:6px solid var(--panel3);margin-bottom:12px}
+.libro{background:none;border:0;padding:0;text-align:left;display:block;min-width:0}
+.libro .portada{position:relative;aspect-ratio:2/3;border-radius:2px 5px 5px 2px;overflow:hidden;box-shadow:5px 7px 14px #0007;background:#1B3558;display:flex;align-items:flex-end}
+.libro .portada::after{content:"";position:absolute;left:4px;top:0;bottom:0;width:3px;background:#0003}
+.libro .portada img{width:100%;height:100%;object-fit:cover;display:block}
+.libro .portada span{padding:8px 7px;font-family:var(--cond);font-weight:700;font-size:14px;line-height:1.05;color:#fffd;overflow-wrap:anywhere}
+.libro small{display:block;margin-top:6px;font-size:11px;color:var(--suave);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#ficha{position:fixed;inset:0;background:rgba(3,8,16,.82);z-index:30;display:flex;align-items:center;justify-content:center;padding:max(16px,env(safe-area-inset-top)) 16px}
+#ficha .caja{width:min(100%,380px);max-height:100%;overflow:auto;background:#0C1A2E;border:1px solid var(--borde2);border-radius:8px;padding:18px 16px}
+#ficha .grande-portada{width:min(55%,200px);aspect-ratio:2/3;margin:0 auto 14px;border-radius:3px 7px 7px 3px;overflow:hidden;box-shadow:8px 10px 24px #000a;background:#1B3558;display:flex;align-items:flex-end}
+#ficha .grande-portada img{width:100%;height:100%;object-fit:cover}
+#ficha .grande-portada span{padding:12px;font-family:var(--cond);font-weight:700;font-size:24px;color:#fffd;overflow-wrap:anywhere}
+.emblema{display:block;margin:0 auto;height:130px;width:auto;filter:drop-shadow(0 4px 12px #0009)}
+body.con-descanso{padding-bottom:calc(env(safe-area-inset-bottom) + 150px)}
 </style>
 </head>
 <body>
@@ -138,7 +240,8 @@ svg.graf{width:100%;height:auto;display:block}
 <main id="v-app" hidden>
   <section id="t-hoy"></section>
   <section id="t-estudio" hidden></section>
-  <section id="t-diario" hidden></section>
+  <section id="t-fisicas" hidden></section>
+  <section id="p-diario" hidden></section>
   <section id="p-ajustes" hidden></section>
   <section id="p-libros" hidden></section>
   <section id="p-estadisticas" hidden></section>
@@ -150,7 +253,7 @@ svg.graf{width:100%;height:auto;display:block}
 <nav class="inferior" id="nav" hidden aria-label="Secciones principales">
   <button data-t="hoy" class="activa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 2.5 20 5.500v6c0 5-3.400 8.500-8 10-4.600-1.500-8-5-8-10v-6z"/></svg><span>HOY</span></button>
   <button data-t="estudio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2M9 2.500h6"/></svg><span>ESTUDIO</span></button>
-  <button data-t="diario"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 3h12v18H6zM9 8h6M9 12h6M9 16h4"/></svg><span>DIARIO</span></button>
+  <button data-t="fisicas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 9v6M6 7v10M18 7v10M21 9v6M6 12h12"/></svg><span>FÍSICAS</span></button>
 </nav>
 
 <div id="velo"></div>
@@ -163,7 +266,7 @@ svg.graf{width:100%;height:auto;display:block}
 
 <script>
 "use strict";
-const VERSION_APP = "0.35.0";
+const VERSION_APP = "0.36.0";
 const LS = {
   leer(k){ try { return JSON.parse(localStorage.getItem(k)); } catch(e){ return null; } },
   poner(k,v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} },
@@ -210,8 +313,9 @@ function fila(izq, der, extra){ return el("div", {class: "fila" + (extra ? " " +
 function chip(texto, tipo){ return el("span", {class: "chip " + (tipo || ""), texto}); }
 function barra(pct, oro){ return el("div", {class: "barra" + (oro ? " oro" : "")}, el("i", {style: `width:${Math.max(0, Math.min(100, pct))}%`})); }
 function paginaTitulo(texto){ return el("h2", {class: "titulo-pag", texto}); }
-function sinDatos(que){ return tarjeta(null, el("p", {class: "vacio", texto: `Todavía no hay datos de ${que}. Actualiza Guardian en el PC (v0.35 o superior) y deja la aplicación abierta un minuto.`})); }
+function sinDatos(que){ return tarjeta(null, el("p", {class: "vacio", texto: `Todavía no hay datos de ${que}. Actualiza Guardian en el PC (v0.36 o superior) y deja la aplicación abierta un minuto.`})); }
 const ICONOS = {
+  diario: ["M6 3h12v18H6zM9 8h6M9 12h6M9 16h4"],
   ajustes: ["M12 15.500a3.500 3.500 0 1 0 0-7 3.500 3.500 0 0 0 0 7z", "M19.400 15a1.700 1.700 0 0 0 .3 1.800l.1.1a2 2 0 1 1-2.800 2.800l-.1-.1a1.700 1.700 0 0 0-1.800-.3 1.700 1.700 0 0 0-1 1.500V21a2 2 0 1 1-4 0v-.1a1.700 1.700 0 0 0-1.100-1.500 1.700 1.700 0 0 0-1.800.3l-.1.100a2 2 0 1 1-2.800-2.800l.1-.1a1.700 1.700 0 0 0 .3-1.800 1.700 1.700 0 0 0-1.500-1H3a2 2 0 1 1 0-4h.1a1.700 1.700 0 0 0 1.500-1.100 1.700 1.700 0 0 0-.3-1.800l-.1-.1a2 2 0 1 1 2.800-2.800l.1.100a1.700 1.700 0 0 0 1.800.3H9a1.700 1.700 0 0 0 1-1.500V3a2 2 0 1 1 4 0v.1a1.700 1.700 0 0 0 1 1.500 1.700 1.700 0 0 0 1.800-.3l.1-.1a2 2 0 1 1 2.800 2.800l-.1.100a1.700 1.700 0 0 0-.3 1.800V9a1.700 1.700 0 0 0 1.500 1H21a2 2 0 1 1 0 4h-.1a1.700 1.700 0 0 0-1.500 1z"],
   libros: ["M4 4.500A2.500 2.500 0 0 1 6.500 2H20v17H6.500A2.500 2.500 0 0 0 4 21.500z", "M4 19.500A2.500 2.500 0 0 1 6.500 17H20"],
   estadisticas: ["M4 20V10M10 20V4M16 20v-7M22 20H2"],
@@ -221,7 +325,7 @@ const ICONOS = {
 };
 function icono(nombre){ return sv("svg", {viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", "stroke-width": "1.8", "aria-hidden": "true"}, ICONOS[nombre].map(d => sv("path", {d}))); }
 const MENU = [
-  ["ajustes", "Ajustes", "Cuenta y cerrar sesión"], ["libros", "Libros leídos", "Tu biblioteca"], ["estadisticas", "Estadísticas", "Rachas, mapa y estudio"],
+  ["diario", "Diario", "Auditorías y entradas"], ["ajustes", "Ajustes", "Cuenta y cerrar sesión"], ["libros", "Libros leídos", "Tu biblioteca"], ["estadisticas", "Estadísticas", "Rachas, mapa y estudio"],
   ["pase", "Pase de batalla", "Nivel, rangos y recompensas"], ["calendario", "Calendario", "Eventos y cumpleaños"], ["temario", "Temario", "Temas por estudiar"]
 ];
 
@@ -247,7 +351,7 @@ async function api(ruta, opciones = {}, conSesion = true){
   if (!r.ok){
     if (r.status === 401 && conSesion) { sesion.caduca = 0; }
     let t = ""; try { const j = await r.json(); t = j.error_description || j.msg || j.message || ""; } catch(e){}
-    throw new Error(t || `Error ${r.status} de la nube.`);
+    const er = new Error(t || `Error ${r.status} de la nube.`); er.status = r.status; throw er;
   }
   const txt = await r.text(); return txt ? JSON.parse(txt) : null;
 }
@@ -266,7 +370,7 @@ async function derivar(frase, uid){
   const base = await crypto.subtle.importKey("raw", e.encode(frase), "PBKDF2", false, ["deriveBits"]);
   return new Uint8Array(await crypto.subtle.deriveBits({name: "PBKDF2", hash: "SHA-256", salt: e.encode(PREFIJO + uid), iterations: VUELTAS}, base, 256));
 }
-async function importar(u8){ return crypto.subtle.importKey("raw", u8, "AES-GCM", false, ["decrypt"]); }
+async function importar(u8){ return crypto.subtle.importKey("raw", u8, "AES-GCM", false, ["encrypt", "decrypt"]); }
 async function descifrar(paquete){
   try { const p = typeof paquete === "string" ? JSON.parse(paquete) : paquete;
     const claro = await crypto.subtle.decrypt({name: "AES-GCM", iv: b64(p.n)}, clave, b64(p.c)); return JSON.parse(new TextDecoder().decode(claro)); }
@@ -340,7 +444,7 @@ function pintarEstudio(){
   s.append(tarjeta("Pomodoros", e.filas.map(f => fila(el("span", {texto: `${f.n}. ${f.inicio}–${f.fin}`}), el("span", {class: "sub", texto: `${f.min} min`}), "")).map((x, i) => { x.append(chip(e.filas[i].resultado, e.filas[i].clase)); return x; })));
 }
 function pintarDiario(){
-  const s = $("t-diario"); s.replaceChildren();
+  const s = $("p-diario"); s.replaceChildren(paginaTitulo("Diario"));
   const aud = (datos && datos.auditorias) || [], ent = datos && datos.diario && datos.diario.entradas || [];
   const campo = (et, tx) => tx ? [el("div", {class: "etq", style: "margin-top:10px", texto: et}), el("div", {class: "texto", texto: tx})] : [];
   s.append(el("p", {class: "sub", style: "padding:8px 0", texto: "Solo lectura: se escribe en el PC."}));
@@ -364,26 +468,29 @@ function pintarAjustes(){
       fila(el("span", {class: "sub", texto: "Se refresca"}), el("span", {texto: "cada 20 s"})),
       el("button", {class: "boton mini", id: "b-refrescar", style: "margin-top:12px", onclick: () => { avisar("Actualizando…"); cargar(); }}, "Actualizar ahora"),
       fila(el("span", {class: "sub", texto: "Versión de la app"}), el("span", {texto: VERSION_APP}))),
+    tarjeta("Sonido y animaciones", ...[["sonido", "Sonido", "Suena al celebrar (el interruptor de silencio del iPhone lo apaga)"], ["anim", "Animaciones", "Celebraciones al subir de nivel, completar el día…"], ["descanso", "Cronómetro de descanso", "Arranca al marcar una serie"]].map(([k, t, d]) =>
+      el("label", {class: "pref", style: "color:var(--texto);font-size:16px"}, el("span", {}, t, el("div", {class: "sub", texto: d})), el("input", {type: "checkbox", id: "pf-" + k, checked: pref(k) ? "" : null, style: "width:22px;margin:0", onchange: ev => { ponerPref(k, ev.target.checked); if (k === "sonido" && ev.target.checked) { desbloquearAudio(); setTimeout(() => sonar("fin"), 50); } }})))),
     tarjeta("Avisos", el("p", {class: "sub", texto: "Los avisos llegan con la app ntfy. Cuáles recibes, y a qué hora, se elige en Guardian (PC): Ajustes → Perfil → iPhone…"})),
     tarjeta("Sesión", sal));
 }
 function cerrarSesion(){ for (const k of ["g_sesion","g_ultimo"]) LS.quitar(k); sesion = null; clave = null; datos = null; ui.confirmarSalir = false; vista("v-login"); }
 
 function estrellas(n){ return "★".repeat(n) + "☆".repeat(5 - n); }
+/* ---------- libros (estantería) ---------- */
 function pintarLibros(){
   const s = $("p-libros"); s.replaceChildren(paginaTitulo("Libros leídos")); const l = datos && datos.libros;
   if (!l) { s.append(sinDatos("libros")); return; }
   if (l.anios.length) s.append(el("div", {class: "rejilla2"}, l.anios.slice(0, 4).map(a => el("div", {class: "tarjeta"}, el("span", {class: "etq", texto: a.anio}),
     el("div", {class: "num oro", style: "font-size:28px;line-height:1.1", texto: `${a.libros} ${a.libros === 1 ? "libro" : "libros"}`}), el("div", {class: "sub", texto: `${a.paginas.toLocaleString("es-ES")} páginas`})))));
-  if (l.leyendo.length) s.append(tarjeta("Leyendo ahora", l.leyendo.map(b => el("div", {class: "fila", style: "display:block"}, fila(el("b", {texto: b.t}), el("span", {class: "num oro", texto: b.pct + "%"})),
-    el("div", {class: "sub", texto: `${b.a || "Autor desconocido"} · pág. ${b.act} de ${b.p}`}), barra(b.pct, true)))));
+  const lomo = b => el("button", {class: "libro", "aria-label": `${b.t}, ${b.a || "autor desconocido"}`, onclick: () => abrirFicha(b)}, portadaEl(b, "portada"), el("small", {texto: b.a || b.t}));
+  if (l.leyendo.length){
+    s.append(tarjeta("Leyendo ahora", el("div", {class: "estante"}, l.leyendo.map(lomo)), l.leyendo.map(b => el("div", {class: "fila", style: "display:block"}, fila(el("b", {texto: b.t}), el("span", {class: "num oro", texto: b.pct + "%"})),
+      el("div", {class: "sub", texto: `${b.a || "Autor desconocido"} · pág. ${b.act} de ${b.p}`}), barra(b.pct, true)))));
+  }
   if (!l.leidos.length) { s.append(tarjeta(null, el("p", {class: "vacio", texto: "Todavía no hay libros terminados."}))); return; }
   const porAnio = new Map();
   for (const b of l.leidos){ const a = (b.f || "").slice(0, 4) || "Sin fecha"; if (!porAnio.has(a)) porAnio.set(a, []); porAnio.get(a).push(b); }
-  for (const [a, lista] of porAnio) s.append(tarjeta(`${a} · ${lista.length}`, lista.map(b => el("div", {class: "fila", style: "align-items:flex-start"},
-    el("div", {style: "min-width:0"}, el("div", {style: "font-weight:500;overflow-wrap:anywhere", texto: b.t}), el("div", {class: "sub", texto: `${b.a || "Autor desconocido"} · ${b.p} págs.${b.g ? " · " + b.g : ""}`})),
-    el("div", {style: "text-align:right;flex:none"}, b.v ? el("div", {class: "oro", style: "letter-spacing:1px;font-size:13px", "aria-label": `${b.v} de 5`, texto: estrellas(b.v)}) : null,
-      el("div", {class: "sub", texto: b.f ? fechaCorta(b.f) : ""}))))));
+  for (const [a, lista] of porAnio) s.append(tarjeta(`${a} · ${lista.length}`, el("div", {class: "estante"}, lista.map(lomo))));
 }
 
 const COLOR_MAPA = {p: "#4FAE7F", a: "#C9A84C", f: "#9B4A4A", c: "#6F8FB8", s: "#1B3558", u: "#12233D"};
@@ -489,8 +596,8 @@ function pintarTemario(){
   s.append(el("p", {class: "sub", style: "padding:6px 2px", texto: "Solo lectura: los temas se marcan en Guardian, en el PC."}));
 }
 
-const PINTORES = {hoy: pintarHoy, estudio: pintarEstudio, diario: pintarDiario, ajustes: pintarAjustes, libros: pintarLibros, estadisticas: pintarEstadisticas, pase: pintarPase, calendario: pintarCalendario, temario: pintarTemario};
-const PESTANAS = ["hoy", "estudio", "diario"];
+const PINTORES = {hoy: pintarHoy, estudio: pintarEstudio, fisicas: () => { if (fis.vista === "inicio" || !fis.ses && fis.vista !== "marca") pintarFisicas(); }, diario: pintarDiario, ajustes: pintarAjustes, libros: pintarLibros, estadisticas: pintarEstadisticas, pase: pintarPase, calendario: pintarCalendario, temario: pintarTemario};
+const PESTANAS = ["hoy", "estudio", "fisicas"];
 function prefijo(k){ return PESTANAS.includes(k) ? "t-" : "p-"; }
 function pintar(){
   for (const k of Object.keys(PINTORES)) { try { PINTORES[k](); } catch(e){ const s = $(prefijo(k) + k); s.replaceChildren(tarjeta(null, el("p", {class: "vacio", texto: "No se pudo pintar esta sección."}))); } }
@@ -531,7 +638,7 @@ async function cargar(){
   try {
     const filas = await api("/rest/v1/movil_estado?select=datos,actualizado");
     if (!filas || !filas.length) { avisar("El PC todavía no ha publicado nada. Abre Guardian en el PC y activa «iPhone…».", true); return; }
-    const d = await descifrar(filas[0].datos); datos = d; LS.poner("g_ultimo", filas[0].datos); avisar(""); pintar(); construirPanel();
+    const d = await descifrar(filas[0].datos); const previo = datos; datos = d; LS.poner("g_ultimo", filas[0].datos); avisar(""); pintar(); construirPanel(); revisarCelebraciones(previo, d); enviarCola();
   } catch(e){
     const guardado = LS.leer("g_ultimo");
     if (guardado && clave && !datos){ try { datos = await descifrar(guardado); pintar(); } catch(_){} }
@@ -548,6 +655,7 @@ async function tachar(t, boton){
       await new Promise(f => setTimeout(f, 2500));
       const x = await api(`/rest/v1/movil_peticiones?id=eq.${id}&select=estado,resultado`);
       if (x && x[0] && x[0].estado !== "pendiente"){
+        if (x[0].estado === "hecha") await animarTachado(boton, t);
         enPeticion = false; await cargar();
         avisar(x[0].estado === "hecha" ? `«${t.nombre}» tachada.` : x[0].resultado || "El PC la rechazó.", x[0].estado !== "hecha");
         return;
@@ -556,6 +664,409 @@ async function tachar(t, boton){
     avisar("El PC no respondió (¿está apagado o Guardian cerrado?). Se aplicará si se enciende en 15 minutos.", true);
   } catch(e){ avisar(e.message, true); }
   enPeticion = false; boton.disabled = false; boton.textContent = "Tachar";
+}
+
+/* ---------- preferencias, almacén local y cola de envío ---------- */
+const PREF_DEF = {sonido: true, anim: true, descanso: true};
+function pref(k){ const p = LS.leer("g_pref") || {}; return k in p ? !!p[k] : PREF_DEF[k]; }
+function ponerPref(k, v){ const p = LS.leer("g_pref") || {}; p[k] = !!v; LS.poner("g_pref", p); }
+const memKV = new Map();
+function idb(){
+  if (!idb.p) idb.p = new Promise((ok, mal) => { try { const r = indexedDB.open("guardian-movil", 1); r.onupgradeneeded = () => r.result.createObjectStore("kv");
+    r.onsuccess = () => ok(r.result); r.onerror = () => mal(r.error); } catch(e){ mal(e); } });
+  return idb.p;
+}
+async function kvGet(k){
+  try { const d = await idb(); return await new Promise((ok, mal) => { const q = d.transaction("kv").objectStore("kv").get(k); q.onsuccess = () => ok(q.result); q.onerror = () => mal(q.error); }); }
+  catch(e){ return memKV.get(k); }
+}
+async function kvPut(k, v){
+  memKV.set(k, v);
+  try { const d = await idb(); await new Promise((ok, mal) => { const t = d.transaction("kv", "readwrite"); t.objectStore("kv").put(v, k); t.oncomplete = ok; t.onerror = () => mal(t.error); }); } catch(e){}
+}
+function uuid(){
+  if (crypto.randomUUID) return crypto.randomUUID();
+  const a = crypto.getRandomValues(new Uint8Array(16)); a[6] = a[6] & 15 | 64; a[8] = a[8] & 63 | 128;
+  const h = [...a].map(x => x.toString(16).padStart(2, "0")).join(""); return `${h.slice(0,8)}-${h.slice(8,12)}-${h.slice(12,16)}-${h.slice(16,20)}-${h.slice(20)}`;
+}
+async function cifrar(obj){
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const ct = new Uint8Array(await crypto.subtle.encrypt({name: "AES-GCM", iv}, clave, new TextEncoder().encode(JSON.stringify(obj))));
+  return {v: 1, n: b64txt(iv), c: b64txt(ct)};
+}
+function hoyLocal(){ const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`; }
+
+/* Lo que se apunta (entrenos y marcas) se guarda primero en ESTE iPhone y se envía cuando hay internet. El PC lo aplica cuando
+   está abierto; hasta entonces se ve como «pendiente». Cada envío lleva una clave única: si se repite no se duplica. */
+const COLA = {leer(){ return LS.leer("g_cola") || []; }, guardar(l){ LS.poner("g_cola", l); }};
+let enviando = false;
+function encolar(tipo, dat, resumen){
+  const l = COLA.leer(); l.push({clave: uuid(), tipo, datos: dat, resumen, t: Date.now(), estado: "local"}); COLA.guardar(l);
+  enviarCola();
+}
+async function enviarCola(){
+  if (enviando || !clave || !sesion || !cfg) return; enviando = true;
+  try {
+    const l = COLA.leer();
+    for (const x of l){
+      if (x.estado !== "local") continue;
+      try {
+        await api("/rest/v1/movil_peticiones", {method: "POST", headers: {Prefer: "return=minimal"}, body: JSON.stringify({tipo: x.tipo, clave: x.clave, datos: JSON.stringify(await cifrar(x.datos))})});
+        x.estado = "enviada";
+      } catch(e){
+        if (e.status === 409) x.estado = "enviada";                                          // ya estaba enviada
+        else if (e.status && e.status >= 400 && e.status < 500 && e.status !== 401 && e.status !== 408 && e.status !== 429){ x.estado = "error"; x.resultado = e.message; }
+        else break;                                                                          // sin conexión: se reintenta luego
+      }
+      COLA.guardar(l);
+    }
+    await estadoCola();
+  } finally { enviando = false; refrescarFisicas(); }
+}
+async function estadoCola(){
+  const l = COLA.leer(), pend = l.filter(x => x.estado === "enviada");
+  const ahora = Date.now(), vivas = l.filter(x => !(x.estado === "hecha" && ahora - (x.fin || x.t) > 2 * 86400000));
+  if (pend.length){
+    try {
+      const r = await api(`/rest/v1/movil_peticiones?clave=in.(${pend.map(x => x.clave).join(",")})&select=clave,estado,resultado`);
+      for (const f of r || []){ const x = vivas.find(y => y.clave === f.clave); if (x && f.estado !== "pendiente"){ x.estado = f.estado; x.resultado = f.resultado || ""; x.fin = ahora; } }
+    } catch(e){}
+  }
+  COLA.guardar(vivas);
+}
+function estadoDe(x){
+  return ({local: ["pendiente de enviar", "oro"], enviada: ["enviado · esperando al PC", ""], hecha: ["anotado en el PC", "ok"],
+    rechazada: ["rechazado por el PC", "rojo"], caducada: ["caducó", "rojo"], error: ["no se pudo enviar", "rojo"]})[x.estado] || [x.estado, ""];
+}
+
+/* ---------- sonido y animaciones (todo generado en el propio iPhone, sin archivos ni internet) ---------- */
+let AC = null;
+function desbloquearAudio(){
+  try { if (!AC) AC = new (window.AudioContext || window.webkitAudioContext)(); if (AC.state === "suspended") AC.resume(); } catch(e){}
+}
+document.addEventListener("pointerdown", desbloquearAudio, {passive: true});
+function tono(f, t, d, tipo, v){
+  if (!AC || AC.state !== "running") return;
+  const o = AC.createOscillator(), g = AC.createGain(); o.type = tipo || "triangle"; o.frequency.value = f;
+  const s = AC.currentTime + t; g.gain.setValueAtTime(0, s); g.gain.linearRampToValueAtTime(v || .12, s + .02); g.gain.exponentialRampToValueAtTime(.0001, s + d);
+  o.connect(g); g.connect(AC.destination); o.start(s); o.stop(s + d + .05);
+}
+const SND = {
+  nivel(){ [392, 523, 659, 784, 1047].forEach((f, i) => tono(f, .15 + i * .16, .5)); tono(1568, 1.0, 1.2, "sine", .08); },
+  tachar(){ tono(660, .02, .12, "sine", .1); tono(990, .14, .25, "sine", .1); },
+  dia(){ [523, 659, 784].forEach(f => tono(f, .9, 1.1, "sine", .07)); tono(1047, 1.2, 1.2, "sine", .07); },
+  entreno(){ for (let i = 0; i < 6; i++) tono(440 + i * 55, .3 + i * .22, .15, "square", .04); tono(880, 1.7, .8, "triangle", .1); },
+  pase(){ tono(300, .5, .12, "square", .05); tono(784, .95, .5); tono(1175, 1.2, .9, "sine", .09); },
+  marca(){ tono(523, .9, .2); tono(784, 1.05, .2); tono(1047, 1.25, .8, "triangle", .14); },
+  fin(){ tono(880, 0, .15, "sine", .12); tono(880, .25, .15, "sine", .12); tono(1175, .5, .3, "sine", .12); }
+};
+function sonar(k){ if (pref("sonido") && SND[k]) { desbloquearAudio(); try { SND[k](); } catch(e){} } }
+const menosMovimiento = () => window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+const SHIELD = '<svg class="sh" width="120" height="136" viewBox="0 0 32 36" aria-hidden="true"><path d="M16 1.5 29.5 6v12.5c0 8-5.6 13.4-13.5 16C8.1 31.9 2.5 26.500 2.500 18.500V6z" fill="#12233D" stroke="#C9A84C" stroke-width="1.6"/><path d="M16 9v17M10 14h12" stroke="#C7D0DE" stroke-width="1.8" stroke-linecap="round"/></svg>';
+function desdeHTML(txt){ const d = new DOMParser().parseFromString("<body>" + txt + "</body>", "text/html"); return [...d.body.childNodes]; }   // solo plantillas fijas; los datos pasan por esc()
+function escudoEl(r){
+  r = Math.max(0, Math.floor(Number(r)) || 0);
+  return desdeHTML(`<svg class="sh" width="100" height="116" viewBox="0 0 32 36" aria-hidden="true"><path d="M16 1.5 29.5 6v12.5c0 8-5.6 13.4-13.5 16C8.1 31.9 2.5 26.5 2.5 18.5V6z" fill="#12233D" stroke="#C9A84C" stroke-width="1.6"/><text x="16" y="23" text-anchor="middle" fill="#C7D0DE" font-family="Arial Narrow,sans-serif" font-weight="700" font-size="13">${r || ""}</text></svg>`)[0];
+}
+function emblemaEl(rango){
+  const r = Math.max(0, Math.floor(Number(rango)) || 0);
+  if (r < 1 || r > 23) return escudoEl(r);
+  const img = el("img", {class: "sh emblema", alt: "", src: `rangos/rango_${String(r).padStart(2, "0")}.png`}); img.onerror = () => img.replaceWith(escudoEl(r)); return img;
+}
+function chispas(n){ let s = ""; for (let i = 0; i < n; i++){ const a = i / n * 6.283, d = 90 + Math.random() * 50;
+  s += `<i class="spark" style="--x:${(Math.cos(a) * d).toFixed(0)}px;--y:${(Math.sin(a) * d).toFixed(0)}px;animation-delay:${(.55 + Math.random() * .3).toFixed(2)}s"></i>`; } return s; }
+const esc = t => String(t).replace(/[&<>"']/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"})[c]);
+const CEL = {
+  nivel: d => `<svg class="rays" viewBox="0 0 260 260" aria-hidden="true">${[0, 30, 60, 90, 120, 150].map(a => `<rect x="127" y="0" width="6" height="260" fill="#C9A84C" opacity=".13" transform="rotate(${a} 130 130)"/>`).join("")}</svg><div class="burst"></div>${chispas(16)}<span data-emb="${Number(d.rango) || 0}"></span><div class="t1" style="margin-top:16px">${d.nuevoRango ? `NIVEL ${d.nivel} · NUEVO RANGO` : `NIVEL ${d.nivel}`}</div><div class="t2">${esc(d.nombre)}</div><div class="xp"><i></i></div><div class="t3">${d.racha != null ? `Racha de ${d.racha} días` : ""}</div>`,
+  dia: () => `<svg class="glow" width="170" height="170" viewBox="0 0 116 116" aria-hidden="true"><circle cx="58" cy="58" r="50" fill="none" stroke="#1B3558" stroke-width="8"/><circle class="ringc" cx="58" cy="58" r="50" fill="none" stroke="#C9A84C" stroke-width="8" stroke-linecap="round" transform="rotate(-90 58 58)"/><text x="58" y="68" text-anchor="middle" fill="#E4EAF3" font-weight="700" font-size="30">✓</text></svg><div class="t1" style="margin-top:18px">MISIÓN CUMPLIDA</div><div class="t2">Día completado</div><div class="t3">Todas las tareas de hoy, tachadas</div>`,
+  entreno: d => `<div class="lbl" style="margin-bottom:14px;color:#8EA0BA;letter-spacing:.2em">${esc(d.nombre)}</div><div style="display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;justify-content:center">${Array.from({length: Math.min(d.series, 12)}, (_, i) => `<div class="dot" style="animation-delay:${.2 + i * .18}s,${.35 + i * .18}s"></div>`).join("")}</div><div class="count">${d.series}</div><div class="t1" style="margin-top:10px">SERIES ANOTADAS</div><div class="t2">Entreno terminado</div><div class="t3">${esc(d.pie || "")}</div>`,
+  pase: d => `<svg class="lock" width="44" height="48" viewBox="0 0 24 26" style="position:absolute;top:26%" aria-hidden="true"><rect x="4" y="11" width="16" height="12" rx="2" fill="#12233D" stroke="#C9A84C" stroke-width="1.6"/><path d="M8 11V8a4 4 0 0 1 8 0v3" fill="none" stroke="#C9A84C" stroke-width="1.6"/></svg><div class="reward"><div class="lbl" style="color:#8EA0BA;letter-spacing:.2em">${d.nivel ? `NIVEL ${d.nivel}` : "RECOMPENSA"}</div>${SHIELD.replace('width="120" height="136"', 'width="52" height="58"')}<div class="big" style="font-size:19px;padding:0 10px;font-family:var(--cond)">${esc(d.titulo)}</div><div class="shine"></div></div><div class="t1" style="margin-top:22px;animation-delay:1.6s">RECOMPENSA DESBLOQUEADA</div><div class="t3" style="animation-delay:1.9s">Se canjea en Guardian, en el PC</div>`,
+  marca: d => `<div class="flash"></div><div class="lbl" style="color:#8EA0BA;letter-spacing:.2em">${esc(d.nombre).toUpperCase()}</div><div class="cnum" id="cnum">${esc(d.antes)}</div><div class="badge">NUEVA MEJOR MARCA</div><div class="t3" style="animation-delay:1.8s">${esc(d.pie || "")}</div>`
+};
+const colaCel = []; let celActiva = false;
+function celebrar(tipo, d){
+  if (!pref("anim") && !pref("sonido")) return;
+  colaCel.push([tipo, d || {}]); if (!celActiva) siguienteCel();
+}
+function siguienteCel(){
+  const sig = colaCel.shift(); if (!sig){ celActiva = false; return; }
+  celActiva = true; const [tipo, d] = sig; sonar(tipo);
+  if (!pref("anim")){ celActiva = false; return siguienteCel(); }
+  cerrarCel(true);
+  const o = el("div", {id: "celebra", role: "dialog", "aria-label": "Celebración", onclick: () => cerrarCel()}); o.append(...desdeHTML(CEL[tipo](d) + '<div class="hint">Toca para cerrar</div>'));
+  const ph = o.querySelector("[data-emb]"); if (ph) ph.replaceWith(emblemaEl(ph.dataset.emb));
+  if (menosMovimiento()) o.classList.add("quieta");
+  document.body.append(o);
+  if (tipo === "marca" && !menosMovimiento()) setTimeout(() => { const n = $("cnum"); if (n){ n.textContent = d.despues; n.classList.add("tick"); } }, 900);
+  else if (tipo === "marca" && $("cnum")) $("cnum").textContent = d.despues;
+  o._t = setTimeout(() => cerrarCel(), 6500);
+}
+function cerrarCel(silencio){
+  const o = $("celebra"); if (o){ clearTimeout(o._t); o.remove(); }
+  if (!silencio) setTimeout(siguienteCel, 250);
+}
+
+/* Qué celebrar al cambiar la foto del PC. La primera vez solo se anota el punto de partida (sin fiestas por cosas antiguas). */
+function revisarCelebraciones(previo, d){
+  try {
+    const n = d.nivel, v = LS.leer("g_visto") || {};
+    if (n && typeof n.nivel === "number"){
+      if (v.nivel != null && n.nivel > v.nivel) celebrar("nivel", {nivel: n.nivel, nombre: ((n.rango_nombre || "") + " " + (n.romano || "")).trim() || n.nombre, rango: n.rango, racha: n.racha, nuevoRango: v.rango != null && n.rango !== v.rango});
+      if (v.nivel == null || n.nivel > v.nivel) { v.nivel = n.nivel; v.rango = n.rango; }
+    }
+    const t = d.tareas || [];
+    if (t.length && t.every(x => x.hecha) && v.dia !== d.hoy){ if (v.dia != null || (previo && previo.tareas && previo.tareas.some(x => !x.hecha))) celebrar("dia"); v.dia = d.hoy; }
+    else if (v.dia == null) v.dia = "";
+    const p = d.pase && d.pase.premios;
+    if (p){
+      const abiertos = p.filter(x => x.estado !== "BLOQUEADA").map(x => x.titulo + "|" + x.nivel);
+      if (v.premios != null) for (const x of p) if (x.estado !== "BLOQUEADA" && !v.premios.includes(x.titulo + "|" + x.nivel)) celebrar("pase", {titulo: x.titulo, nivel: x.nivel});
+      v.premios = abiertos;
+    }
+    LS.poner("g_visto", v);
+  } catch(e){}
+}
+
+/* ---------- Físicas ---------- */
+const fis = {vista: "inicio", ses: null, borr: null, desc: null, abierto: null};
+const FIS_BORR = "g_borradores";
+function fisicas(){ return (datos && datos.fisicas) || null; }
+function numTxt(n){ return n == null ? "" : String(n).replace(".", ","); }
+function mmss(s){ s = Math.round(s); return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`; }
+function leerMmss(t){ const m = String(t).trim().match(/^(\d+):([0-5]?\d)$/); if (m) return +m[1] * 60 + +m[2]; const n = parseFloat(String(t).replace(",", ".")); return isFinite(n) ? n : null; }
+function valorPrueba(p, v){ return v == null ? "—" : (p.unidad === "mm:ss" ? mmss(v) : `${numTxt(v)} ${p.unidad === "s" ? "s" : p.unidad === "rep" ? "rep" : ""}`.trim()); }
+function pruebaMejor(p, a, b){ return p.mejor_es === "menos" ? a < b : a > b; }
+function volver(){ fis.vista = "inicio"; fis.ses = null; fis.borr = null; pararDescanso(); soltarPantalla(); pintarFisicas(); window.scrollTo(0, 0); }
+function refrescarFisicas(){ if (!$("t-fisicas").hidden && fis.vista === "inicio") pintarFisicas(); }
+const MOD = {fuerza: "Fuerza", resistencia: "Resistencia", agilidad: "Agilidad", movilidad: "Movilidad", mixta: "Mixta"};
+const hora = m => `${String(Math.floor(m / 60)).padStart(2, "0")}:${String(m % 60).padStart(2, "0")}`;
+
+function pintarFisicas(){
+  const s = $("t-fisicas"); s.replaceChildren();
+  if (fis.vista === "entreno" && fis.ses) return pintarEntreno(s);
+  if (fis.vista === "resumen" && fis.ses) return pintarResumen(s);
+  if (fis.vista === "marca") return pintarMarca(s);
+  const f = fisicas();
+  s.append(pintarColaTarjeta());
+  if (!f){ s.append(sinDatos("físicas")); return; }
+  const hoy = f.hoy || [];
+  if (!hoy.length) s.append(el("div", {class: "tarjeta heroe"}, el("span", {class: "etq", texto: "Hoy"}), el("p", {class: "vacio", texto: "Hoy no tienes entreno planificado."}),
+    f.proxima ? el("p", {class: "sub", texto: `Siguiente: ${f.proxima.n} · ${fechaCorta(f.proxima.f)}`}) : null));
+  for (const x of hoy) s.append(tarjetaSesion(x));
+  if (f.semana) s.append(tarjeta("Esta semana", el("div", {class: "semana"}, f.semana.map((d, i) => {
+    const hecho = d.s.length && d.s.every(x => x.e === "completada"), parte = d.s.some(x => x.e === "completada");
+    return el("div", {class: "dia" + (d.f === datos.hoy ? " hoy" : "") + (hecho ? " ok" : "")}, DIAS_SEM[i], el("b", {texto: String(+d.f.slice(8))}), el("i", {texto: hecho ? "✓" : (d.s.length ? (parte ? "◐" : "●") : "")}));
+  }))));
+  if (f.pruebas && f.pruebas.length){
+    s.append(tarjeta("Pruebas", f.pruebas.map(p => el("div", {class: "prueba"},
+      el("div", {class: "fila"}, el("b", {texto: p.nombre}), chip(p.puntos != null ? `${p.puntos} pts` : "sin marca", p.puntos >= 10 ? "ok" : "")),
+      el("div", {class: "sub", texto: `Última ${valorPrueba(p, p.ultima)} · mejor ${valorPrueba(p, p.mejor)} · objetivo ${valorPrueba(p, p.objetivo)}`}),
+      p.sig_marca != null ? el("div", {class: "sub", texto: `Siguiente punto: ${valorPrueba(p, p.sig_marca)}`}) : null)),
+      el("button", {class: "boton dorado grande", id: "b-marca", style: "margin-top:12px", onclick: () => { fis.vista = "marca"; pintarFisicas(); window.scrollTo(0, 0); }}, "Apuntar marca")));
+  }
+}
+function pintarColaTarjeta(){
+  const l = COLA.leer(); if (!l.length) return document.createDocumentFragment();
+  const filas = l.slice().reverse().map(x => { const [t, c] = estadoDe(x);
+    return el("div", {class: "fila"}, el("span", {texto: x.resumen}), el("span", {style: "display:flex;gap:8px;align-items:center"}, chip(t, c),
+      x.estado === "error" ? el("button", {class: "linea", onclick: () => { x.estado = "local"; COLA.guardar(l); enviarCola(); }}, "Reintentar") : null)); });
+  const err = l.find(x => x.estado === "error");
+  return tarjeta("Pendiente de enviar al PC", filas, err ? el("p", {class: "sub", style: "margin-top:8px", texto: "No se pudo enviar. ¿Has ejecutado el SQL nuevo en Supabase? (docs/MOVIL_SUPABASE.sql)"}) : null);
+}
+function tarjetaSesion(x){
+  const hecho = x.hecho && x.hecho.estado === "completada";
+  return el("div", {class: "tarjeta heroe"}, el("span", {class: "etq", texto: `Hoy · ${hora(x.inicio_min)}`}),
+    el("div", {class: "num", style: "font-size:26px;line-height:1.15;overflow-wrap:anywhere", texto: x.nombre}),
+    el("p", {class: "sub", texto: `${MOD[x.modalidad] || x.modalidad} · ${x.dur_min} min · ${x.ejercicios} ejercicios · ${x.series} series`}),
+    hecho ? el("p", {style: "margin:8px 0;color:var(--okt)", texto: "✓ Entreno anotado"}) : null,
+    el("button", {class: "boton dorado grande", id: "b-empezar", style: "margin-top:10px", onclick: () => empezar(x)}, hecho ? "Volver a abrir" : (borrador(x) ? "Continuar entreno" : "Empezar entreno")));
+}
+
+/* ---- apuntar marca ---- */
+function pintarMarca(s){
+  const f = fisicas() || {}, ps = f.pruebas || [];
+  if (!fis.marca) fis.marca = {clave: ps[0] && ps[0].clave, valor: null};
+  const m = fis.marca, p = ps.find(x => x.clave === m.clave) || ps[0];
+  if (m.valor == null && p) m.valor = p.ultima != null ? p.ultima : (p.objetivo != null ? p.objetivo : 0);
+  const paso = p ? (p.unidad === "mm:ss" ? 1 : (p.unidad === "s" ? .1 : 1)) : 1;
+  const mostrar = v => p && p.unidad === "mm:ss" ? mmss(v) : numTxt(Math.round(v * 10) / 10);
+  s.append(el("div", {class: "cab-sub"}, el("button", {class: "icono-btn", "aria-label": "Volver", onclick: volver}, "‹"), el("div", {class: "t", texto: "Apuntar marca"})));
+  s.append(el("div", {class: "filtros"}, ps.map(x => el("button", {class: x.clave === (p && p.clave) ? "activa" : "", onclick: () => { m.clave = x.clave; m.valor = null; pintarFisicas(); }}, x.nombre))));
+  if (!p){ s.append(sinDatos("pruebas")); return; }
+  s.append(el("div", {class: "tarjeta heroe", style: "text-align:center"}, el("span", {class: "etq", texto: `${p.nombre} · ${p.unidad === "mm:ss" ? "min:seg" : p.unidad}`}),
+    el("div", {class: "stp", style: "justify-content:center;margin:12px 0"}, el("button", {"aria-label": "Menos", onclick: () => { m.valor = Math.max(0, +(m.valor - paso * (p.unidad === "mm:ss" ? 1 : 1)).toFixed(2)); pintarFisicas(); }}, "−"),
+      el("div", {class: "v", id: "marca-v", style: "font-size:48px;min-width:140px", texto: mostrar(m.valor)}), el("button", {"aria-label": "Más", onclick: () => { m.valor = +(m.valor + paso).toFixed(2); pintarFisicas(); }}, "+")),
+    el("p", {class: "sub", texto: `Última ${valorPrueba(p, p.ultima)} · mejor ${valorPrueba(p, p.mejor)} · objetivo ${valorPrueba(p, p.objetivo)}`}),
+    el("button", {class: "boton dorado grande", id: "b-guardar-marca", style: "margin-top:12px", onclick: () => guardarMarca(p, m.valor)}, "Guardar marca")));
+}
+function guardarMarca(p, valor){
+  const mejora = p.mejor == null || pruebaMejor(p, valor, p.mejor);
+  encolar("marca", {clave: p.clave, valor, fecha: hoyLocal()}, `${p.nombre}: ${valorPrueba(p, valor)}`);
+  fis.marca = null; fis.vista = "inicio"; pintarFisicas(); avisar(`Marca guardada en el iPhone: ${valorPrueba(p, valor)}.`);
+  if (mejora) celebrar("marca", {nombre: p.nombre, antes: valorPrueba(p, p.mejor), despues: valorPrueba(p, valor), pie: p.mejor != null ? `Antes: ${valorPrueba(p, p.mejor)}` : "Primera marca"});
+}
+
+/* ---- entreno ---- */
+const claveBorr = x => `${x.serie}|${x.fecha_original}`;
+function borrador(x){ const b = LS.leer(FIS_BORR) || {}; return b[claveBorr(x)] || null; }
+function guardarBorrador(){ if (!fis.ses) return; const b = LS.leer(FIS_BORR) || {}; b[claveBorr(fis.ses)] = fis.borr; LS.poner(FIS_BORR, b); }
+function quitarBorrador(x){ const b = LS.leer(FIS_BORR) || {}; delete b[claveBorr(x)]; LS.poner(FIS_BORR, b); }
+function esCarrera(f){ return f.pd != null || f.pri != null || (f.pt != null && f.pr == null && f.pk == null); }
+function prerrelleno(x, f, anterior){
+  const r = {hecho: false};
+  if (f.pd != null || f.pri != null){ r.dist = f.pd != null ? f.pd : 0; r.dur = f.pt != null ? f.pt : (f.pd && f.pri ? Math.round(f.pd / 1000 * f.pri) : 0); }
+  else if (f.pt != null && f.pr == null){ r.dur = f.pt; }
+  else { r.rep = f.pr != null ? f.pr : 0; if (f.pk != null || x.modalidad === "fuerza") r.kg = f.pk != null ? f.pk : 0; }
+  if (anterior){ if (r.kg != null && anterior[1] != null && f.pk == null) r.kg = anterior[1]; if (r.rep != null && anterior[0] != null && f.pr == null) r.rep = anterior[0]; }
+  return r;
+}
+function empezar(x){
+  const previo = borrador(x);
+  if (previo) fis.borr = previo;
+  else {
+    const ult = x.ultima || {}, cont = {};
+    fis.borr = {estado: "completada", notas: "", inicio: Date.now(), filas: x.filas.map(f => { const k = f.ej; const i = cont[k] = (cont[k] || 0) + 1; return Object.assign({e: f.e, s: f.s, r: f.r, n: ""}, prerrelleno(x, f, (ult[k] || [])[i - 1])); })};
+    if (x.hecho){ for (const h of x.hecho.resultados || []){ const t = fis.borr.filas.find(y => y.e === h.e && y.s === h.s && y.r === h.r); if (t){ Object.assign(t, {rep: h.rep, kg: h.kg, dur: h.dur, dist: h.dist, rpe: h.rpe, rir: h.rir, desc: h.desc, hecho: true}); } } fis.borr.notas = x.hecho.notas || ""; }
+  }
+  fis.ses = x; fis.vista = "entreno"; fis.abierto = null; pintarFisicas(); window.scrollTo(0, 0); pedirPantalla();
+}
+function ejercicios(x){
+  const g = []; x.filas.forEach((f, i) => { const k = f.e + "|" + (f.r || ""); let h = g[g.length - 1];
+    if (!h || h.k !== k){ h = {k, titulo: f.et || f.ej, ej: f.ej, filas: []}; g.push(h); } h.filas.push(i); });
+  return g;
+}
+function pintarEntreno(s){
+  const x = fis.ses, b = fis.borr, hechas = b.filas.filter(y => y.hecho).length;
+  s.append(el("div", {class: "cab-sub"}, el("button", {class: "icono-btn", "aria-label": "Volver", onclick: () => { guardarBorrador(); volver(); }}, "‹"), el("div", {class: "t", texto: x.nombre})));
+  s.append(el("div", {class: "tarjeta", style: "margin-top:0"}, fila(el("span", {class: "sub", texto: "Series hechas"}), el("b", {class: "num", texto: `${hechas}/${b.filas.length}`})), el("div", {class: "barra-progreso"}, el("i", {style: `width:${b.filas.length ? hechas / b.filas.length * 100 : 0}%`}))));
+  for (const g of ejercicios(x)){
+    const ult = x.ultima && x.ultima[g.ej];
+    s.append(el("div", {class: "tarjeta"}, el("div", {class: "ej-cab"}, el("b", {texto: g.titulo})),
+      ult ? el("div", {class: "ult", texto: "La última vez: " + ult.map(([r, k]) => k ? `${numTxt(r)}×${numTxt(k)} kg` : `${numTxt(r)}`).join(" · ")}) : null,
+      g.filas.map(i => filaSerie(x, i))));
+  }
+  s.append(el("button", {class: "boton dorado grande", id: "b-terminar", style: "margin-top:6px", onclick: () => { guardarBorrador(); fis.vista = "resumen"; pararDescanso(); pintarFisicas(); window.scrollTo(0, 0); }}, "Terminar entreno"));
+}
+function stepper(valor, paso, unidad, cambia, etq, fmt){
+  const v = el("span", {class: "v", texto: fmt ? fmt(valor) : numTxt(valor)});
+  const mover = d => { const n = Math.max(0, +(((valor || 0) + d)).toFixed(2)); cambia(n); };
+  return el("div", {class: "stp", role: "group", "aria-label": etq}, el("button", {"aria-label": `${etq}: menos`, onclick: () => mover(-paso)}, "−"), v, el("button", {"aria-label": `${etq}: más`, onclick: () => mover(paso)}, "+"), unidad ? el("span", {class: "u", texto: unidad}) : null);
+}
+function filaSerie(x, i){
+  const b = fis.borr, y = b.filas[i], p = x.filas[i], rec = () => { guardarBorrador(); pintarFisicas(); };
+  const ctrl = [];
+  if (y.dist != null){
+    ctrl.push(el("input", {class: "mini-in", inputmode: "numeric", "aria-label": "Distancia en metros", value: String(y.dist), onchange: ev => { y.dist = Math.max(0, parseFloat(ev.target.value.replace(",", ".")) || 0); guardarBorrador(); }}), el("span", {class: "u sub", texto: "m"}),
+      el("input", {class: "mini-in", inputmode: "text", "aria-label": "Tiempo en minutos y segundos", value: mmss(y.dur || 0), onchange: ev => { const n = leerMmss(ev.target.value); if (n != null) y.dur = Math.round(n); ev.target.value = mmss(y.dur || 0); guardarBorrador(); }}));
+  } else if (y.rep == null && y.dur != null){
+    ctrl.push(stepper(y.dur, 5, "s", n => { y.dur = n; rec(); }, "Segundos"));
+  } else {
+    ctrl.push(stepper(y.rep, 1, "rep", n => { y.rep = n; rec(); }, "Repeticiones"));
+    if (y.kg != null) ctrl.push(stepper(y.kg, .5, "kg", n => { y.kg = n; rec(); }, "Peso"));
+  }
+  const abierto = fis.abierto === i;
+  const marcar = () => { y.hecho = !y.hecho; if (y.hecho && pref("descanso")) iniciarDescanso(y.desc != null ? y.desc : (p.pdesc != null ? p.pdesc : (p.prec != null ? p.prec : 90))); else if (!y.hecho) pararDescanso(); rec(); };
+  return el("div", {class: "serie"}, el("span", {class: "n", texto: String(p.s || p.r || i + 1)}), ctrl,
+    el("button", {class: "chk" + (y.hecho ? " d" : ""), "aria-label": `Serie ${p.s || i + 1} ${y.hecho ? "hecha" : "sin hacer"}`, "aria-pressed": y.hecho ? "true" : "false", onclick: marcar},
+      y.hecho ? sv("svg", {width: 22, height: 22, viewBox: "0 0 14 14", "aria-hidden": "true"}, sv("path", {d: "M2.5 7.500 5.500 10.500 11.500 3.500", fill: "none", stroke: "#0A1424", "stroke-width": 2})) : null),
+    el("button", {class: "linea", style: "min-height:32px;padding:3px 8px;font-size:12px", onclick: () => { fis.abierto = abierto ? null : i; guardarBorrador(); pintarFisicas(); }}, abierto ? "Menos detalles" : "Más detalles"),
+    abierto ? el("div", {class: "det"},
+      detalle("RIR", y.rir, v => { y.rir = v; }), detalle("RPE", y.rpe, v => { y.rpe = v; }), detalle("Descanso real (s)", y.desc, v => { y.desc = v; }),
+      el("label", {}, "Notas", el("input", {class: "largo", value: y.n || "", maxlength: 200, onchange: ev => { y.n = ev.target.value.slice(0, 200); guardarBorrador(); }}))) : null);
+}
+function detalle(etq, valor, poner){
+  return el("label", {}, etq, el("input", {inputmode: "decimal", value: valor != null ? numTxt(valor) : "", onchange: ev => { const t = ev.target.value.trim(); poner(t === "" ? null : (isFinite(parseFloat(t.replace(",", "."))) ? parseFloat(t.replace(",", ".")) : null)); guardarBorrador(); }}));
+}
+
+/* ---- resumen y guardado ---- */
+function pintarResumen(s){
+  const x = fis.ses, b = fis.borr, hechas = b.filas.filter(y => y.hecho).length, total = b.filas.length;
+  if (!b.estadoElegido) b.estado = hechas === total ? "completada" : (hechas ? "parcial" : "no_realizada");
+  const ESTADOS = [["completada", "Completado"], ["parcial", "Parcial"], ["cancelada", "Cancelado"], ["no_realizada", "No realizado"]];
+  s.append(el("div", {class: "cab-sub"}, el("button", {class: "icono-btn", "aria-label": "Volver al entreno", onclick: () => { fis.vista = "entreno"; pintarFisicas(); }}, "‹"), el("div", {class: "t", texto: "Resumen"})));
+  s.append(el("div", {class: "tarjeta heroe"}, el("span", {class: "etq", texto: x.nombre}), el("div", {class: "num oro", style: "font-size:40px", texto: `${hechas}/${total}`}), el("p", {class: "sub", texto: "series anotadas"}),
+    el("div", {class: "etq", style: "margin-top:12px", texto: "Estado"}),
+    el("div", {class: "filtros", style: "flex-wrap:wrap"}, ESTADOS.map(([k, t]) => el("button", {class: b.estado === k ? "activa" : "", onclick: () => { b.estado = k; b.estadoElegido = true; guardarBorrador(); pintarFisicas(); }}, t))),
+    el("label", {for: "r-notas", texto: "Notas del entreno"}), el("input", {id: "r-notas", value: b.notas || "", maxlength: 500, onchange: ev => { b.notas = ev.target.value.slice(0, 500); guardarBorrador(); }}),
+    el("button", {class: "boton dorado grande", id: "b-guardar-entreno", onclick: guardarEntreno}, "Guardar entreno")));
+}
+function filasParaEnviar(x, b){
+  return b.filas.filter(y => y.hecho).map(y => { const o = {e: y.e, s: y.s, r: y.r};
+    for (const [c, l] of [["rep", "rep"], ["kg", "kg"], ["dur", "dur"], ["dist", "dist"], ["rpe", "rpe"], ["rir", "rir"], ["desc", "desc"]]) if (y[c] != null) o[l] = y[c];
+    if (y.n) o.n = y.n; return o; });
+}
+function guardarEntreno(){
+  const x = fis.ses, b = fis.borr;
+  encolar("entreno", {serie: x.serie, fecha_original: x.fecha_original, estado: b.estado, notas: (b.notas || "").slice(0, 500), filas: filasParaEnviar(x, b)}, `Entreno: ${x.nombre}`);
+  const n = b.filas.filter(y => y.hecho).length;
+  quitarBorrador(x); pararDescanso(); soltarPantalla(); const nombre = x.nombre;
+  fis.vista = "inicio"; fis.ses = null; fis.borr = null; pintarFisicas(); window.scrollTo(0, 0);
+  avisar("Entreno guardado en el iPhone; se enviará al PC.");
+  if (b.estado === "completada" || b.estado === "parcial") celebrar("entreno", {nombre, series: n, pie: `${Math.max(1, Math.round((Date.now() - b.inicio) / 60000))} min`});
+}
+
+/* ---- descanso, pantalla encendida ---- */
+let wl = null;
+async function pedirPantalla(){ try { if (navigator.wakeLock) wl = await navigator.wakeLock.request("screen"); } catch(e){} }
+function soltarPantalla(){ try { if (wl) wl.release(); } catch(e){} wl = null; }
+document.addEventListener("visibilitychange", () => { if (!document.hidden && fis.vista === "entreno" && !wl) pedirPantalla(); });
+function pararDescanso(){ clearInterval(fis.desc && fis.desc.t); fis.desc = null; const d = $("descanso"); if (d) d.remove(); document.body.classList.remove("con-descanso"); }
+function iniciarDescanso(seg){
+  pararDescanso(); if (!seg) return;
+  fis.desc = {fin: Date.now() + seg * 1000, seg};
+  const caja = el("div", {id: "descanso", role: "timer", "aria-label": "Descanso"}, el("span", {class: "t", id: "d-t", texto: mmss(seg)}), el("span", {class: "d", texto: "Descanso"}),
+    el("button", {onclick: () => { fis.desc.fin += 30000; pintarDescanso(); }}, "+30 s"), el("button", {id: "d-saltar", onclick: pararDescanso}, "Saltar"));
+  document.body.append(caja); document.body.classList.add("con-descanso");
+  fis.desc.t = setInterval(pintarDescanso, 250); pintarDescanso();
+}
+function pintarDescanso(){
+  if (!fis.desc) return; const r = Math.ceil((fis.desc.fin - Date.now()) / 1000), t = $("d-t");
+  if (r <= 0){ const c = $("descanso"); if (c) c.classList.add("fin"); if (t) t.textContent = "0:00"; clearInterval(fis.desc.t); sonar("fin"); try { navigator.vibrate && navigator.vibrate(200); } catch(e){} setTimeout(pararDescanso, 4000); return; }
+  if (t) t.textContent = mmss(r);
+}
+
+/* ---------- estantería de libros ---------- */
+const portadas = new Map();   // libro -> url (blob) ya descifrada
+async function portadaDe(b){
+  if (portadas.has(b.id)) return portadas.get(b.id);
+  try {
+    const hs = await api(`/rest/v1/movil_portadas?libro=eq.${b.id}&select=hash,datos`);
+    if (!hs || !hs.length) return null;
+    const cache = await kvGet("portada:" + b.id);
+    if (cache && cache.hash === hs[0].hash){ const u = URL.createObjectURL(cache.blob); portadas.set(b.id, u); return u; }
+    const d = await descifrar(hs[0].datos), blob = new Blob([b64(d.img)], {type: "image/jpeg"});
+    await kvPut("portada:" + b.id, {hash: hs[0].hash, blob}); const u = URL.createObjectURL(blob); portadas.set(b.id, u); return u;
+  } catch(e){ return null; }
+}
+function portadaEl(b, clase){
+  const caja = el("div", {class: clase}, el("span", {texto: b.t}));
+  caja.style.background = b.c || "#1B3558";
+  if (b.tp) portadaDe(b).then(u => { if (u){ caja.replaceChildren(el("img", {src: u, alt: `Portada de ${b.t}`})); } });
+  return caja;
+}
+function abrirFicha(b){
+  cerrarFicha();
+  const caja = el("div", {class: "caja"}, portadaEl(b, "grande-portada"), el("div", {style: "font-family:var(--cond);font-weight:700;font-size:22px;text-align:center;overflow-wrap:anywhere", texto: b.t}),
+    el("div", {class: "sub", style: "text-align:center", texto: b.a || "Autor desconocido"}),
+    el("div", {style: "margin:10px 0"}, fila(el("span", {class: "sub", texto: "Páginas"}), el("span", {texto: String(b.p || "—")})), b.g ? fila(el("span", {class: "sub", texto: "Género"}), el("span", {texto: b.g})) : null,
+      b.f ? fila(el("span", {class: "sub", texto: "Terminado"}), el("span", {texto: fechaCorta(b.f)})) : null, b.v ? fila(el("span", {class: "sub", texto: "Nota"}), el("span", {class: "oro", texto: estrellas(b.v)})) : null),
+    el("button", {class: "boton grande", id: "b-cerrar-ficha", onclick: cerrarFicha}, "Cerrar"));
+  document.body.append(el("div", {id: "ficha", role: "dialog", "aria-modal": "true", "aria-label": b.t, onclick: ev => { if (ev.target.id === "ficha") cerrarFicha(); }}, caja));
+}
+function cerrarFicha(){ const f = $("ficha"); if (f) f.remove(); }
+
+
+async function animarTachado(boton, t){
+  sonar("tachar"); if (!pref("anim") || menosMovimiento()) return;
+  const f = boton.closest(".tarea"); if (!f) return;
+  try {
+    f.style.position = "relative"; const caja = f.querySelector(".marca-t");
+    if (caja){ caja.classList.add("boxok"); caja.append(sv("svg", {width: 14, height: 14, viewBox: "0 0 14 14", "aria-hidden": "true"}, sv("path", {class: "draw", d: "M2.5 7.5 5.500 10.500 11.500 3.500", fill: "none", stroke: "#0A1424", "stroke-width": 2}))); }
+    const tn = f.querySelector(".tn"); if (tn) tn.classList.add("strike");
+    if (t.recompensa) f.append(el("span", {class: "plus", texto: `+${t.recompensa}`}));
+    await new Promise(ok => setTimeout(ok, 1100));
+  } catch(e){}
 }
 
 /* ---------- arranque ---------- */
