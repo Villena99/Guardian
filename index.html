@@ -470,6 +470,8 @@ function pintarAjustes(){
       fila(el("span", {class: "sub", texto: "Versión de la app"}), el("span", {texto: VERSION_APP}))),
     tarjeta("Sonido y animaciones", ...[["sonido", "Sonido", "Suena al celebrar (el interruptor de silencio del iPhone lo apaga)"], ["anim", "Animaciones", "Celebraciones al subir de nivel, completar el día…"], ["descanso", "Cronómetro de descanso", "Arranca al marcar una serie"]].map(([k, t, d]) =>
       el("label", {class: "pref", style: "color:var(--texto);font-size:16px"}, el("span", {}, t, el("div", {class: "sub", texto: d})), el("input", {type: "checkbox", id: "pf-" + k, checked: pref(k) ? "" : null, style: "width:22px;margin:0", onchange: ev => { ponerPref(k, ev.target.checked); if (k === "sonido" && ev.target.checked) { desbloquearAudio(); setTimeout(() => sonar("fin"), 50); } }})))),
+    tarjeta("Probar animaciones", el("p", {class: "sub", texto: "Toca una para ver cómo queda y comprobar el sonido. Si no oyes nada: sube el volumen, quita el modo silencio del iPhone y activa «Sonido» arriba."}),
+      el("div", {class: "filtros", style: "flex-wrap:wrap"}, PRUEBAS_ANIM.map(([k, t, d]) => el("button", {id: "pr-" + k, onclick: () => { desbloquearAudio(); celebrar(k, d, true); }}, t)))),
     tarjeta("Avisos", el("p", {class: "sub", texto: "Los avisos llegan con la app ntfy. Cuáles recibes, y a qué hora, se elige en Guardian (PC): Ajustes → Perfil → iPhone…"})),
     tarjeta("Sesión", sal));
 }
@@ -778,21 +780,25 @@ function chispas(n){ let s = ""; for (let i = 0; i < n; i++){ const a = i / n * 
   s += `<i class="spark" style="--x:${(Math.cos(a) * d).toFixed(0)}px;--y:${(Math.sin(a) * d).toFixed(0)}px;animation-delay:${(.55 + Math.random() * .3).toFixed(2)}s"></i>`; } return s; }
 const esc = t => String(t).replace(/[&<>"']/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"})[c]);
 const CEL = {
+  tachar: () => `<div class="tarea" style="position:relative;display:flex;align-items:center;gap:12px;background:#0C1A2E;border:1px solid var(--borde2);border-radius:8px;padding:16px 20px;font-size:18px"><span class="marca-t boxok" style="width:22px;height:22px;border-radius:4px;display:grid;place-items:center"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path class="draw" d="M2.5 7.5 5.5 10.5 11.5 3.5" fill="none" stroke="#0A1424" stroke-width="2"/></svg></span><span class="tn strike">Tarea de ejemplo</span><span class="plus">+5</span></div>`,
   nivel: d => `<svg class="rays" viewBox="0 0 260 260" aria-hidden="true">${[0, 30, 60, 90, 120, 150].map(a => `<rect x="127" y="0" width="6" height="260" fill="#C9A84C" opacity=".13" transform="rotate(${a} 130 130)"/>`).join("")}</svg><div class="burst"></div>${chispas(16)}<span data-emb="${Number(d.rango) || 0}"></span><div class="t1" style="margin-top:16px">${d.nuevoRango ? `NIVEL ${d.nivel} · NUEVO RANGO` : `NIVEL ${d.nivel}`}</div><div class="t2">${esc(d.nombre)}</div><div class="xp"><i></i></div><div class="t3">${d.racha != null ? `Racha de ${d.racha} días` : ""}</div>`,
   dia: () => `<svg class="glow" width="170" height="170" viewBox="0 0 116 116" aria-hidden="true"><circle cx="58" cy="58" r="50" fill="none" stroke="#1B3558" stroke-width="8"/><circle class="ringc" cx="58" cy="58" r="50" fill="none" stroke="#C9A84C" stroke-width="8" stroke-linecap="round" transform="rotate(-90 58 58)"/><text x="58" y="68" text-anchor="middle" fill="#E4EAF3" font-weight="700" font-size="30">✓</text></svg><div class="t1" style="margin-top:18px">MISIÓN CUMPLIDA</div><div class="t2">Día completado</div><div class="t3">Todas las tareas de hoy, tachadas</div>`,
   entreno: d => `<div class="lbl" style="margin-bottom:14px;color:#8EA0BA;letter-spacing:.2em">${esc(d.nombre)}</div><div style="display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;justify-content:center">${Array.from({length: Math.min(d.series, 12)}, (_, i) => `<div class="dot" style="animation-delay:${.2 + i * .18}s,${.35 + i * .18}s"></div>`).join("")}</div><div class="count">${d.series}</div><div class="t1" style="margin-top:10px">SERIES ANOTADAS</div><div class="t2">Entreno terminado</div><div class="t3">${esc(d.pie || "")}</div>`,
   pase: d => `<svg class="lock" width="44" height="48" viewBox="0 0 24 26" style="position:absolute;top:26%" aria-hidden="true"><rect x="4" y="11" width="16" height="12" rx="2" fill="#12233D" stroke="#C9A84C" stroke-width="1.6"/><path d="M8 11V8a4 4 0 0 1 8 0v3" fill="none" stroke="#C9A84C" stroke-width="1.6"/></svg><div class="reward"><div class="lbl" style="color:#8EA0BA;letter-spacing:.2em">${d.nivel ? `NIVEL ${d.nivel}` : "RECOMPENSA"}</div>${SHIELD.replace('width="120" height="136"', 'width="52" height="58"')}<div class="big" style="font-size:19px;padding:0 10px;font-family:var(--cond)">${esc(d.titulo)}</div><div class="shine"></div></div><div class="t1" style="margin-top:22px;animation-delay:1.6s">RECOMPENSA DESBLOQUEADA</div><div class="t3" style="animation-delay:1.9s">Se canjea en Guardian, en el PC</div>`,
   marca: d => `<div class="flash"></div><div class="lbl" style="color:#8EA0BA;letter-spacing:.2em">${esc(d.nombre).toUpperCase()}</div><div class="cnum" id="cnum">${esc(d.antes)}</div><div class="badge">NUEVA MEJOR MARCA</div><div class="t3" style="animation-delay:1.8s">${esc(d.pie || "")}</div>`
 };
+const PRUEBAS_ANIM = [["nivel", "Nivel", {nivel: 12, nombre: "Perroflauta II", rango: 1, racha: 7, nuevoRango: true}], ["tachar", "Tachar", {}], ["dia", "Día completo", {}],
+  ["entreno", "Entreno", {nombre: "Tren superior", series: 10, pie: "55 min"}], ["pase", "Recompensa", {titulo: "Recompensa de prueba", nivel: 12}],
+  ["marca", "Mejor marca", {nombre: "1000 m", antes: "3:40", despues: "3:38", pie: "Antes: 3:40"}]];
 const colaCel = []; let celActiva = false;
-function celebrar(tipo, d){
-  if (!pref("anim") && !pref("sonido")) return;
-  colaCel.push([tipo, d || {}]); if (!celActiva) siguienteCel();
+function celebrar(tipo, d, forzar){
+  if (!forzar && !pref("anim") && !pref("sonido")) return;
+  colaCel.push([tipo, d || {}, !!forzar]); if (!celActiva) siguienteCel();
 }
 function siguienteCel(){
   const sig = colaCel.shift(); if (!sig){ celActiva = false; return; }
-  celActiva = true; const [tipo, d] = sig; sonar(tipo);
-  if (!pref("anim")){ celActiva = false; return siguienteCel(); }
+  celActiva = true; const [tipo, d, forzar] = sig; sonar(tipo);
+  if (!pref("anim") && !forzar){ celActiva = false; return siguienteCel(); }
   cerrarCel(true);
   const o = el("div", {id: "celebra", role: "dialog", "aria-label": "Celebración", onclick: () => cerrarCel()}); o.append(...desdeHTML(CEL[tipo](d) + '<div class="hint">Toca para cerrar</div>'));
   const ph = o.querySelector("[data-emb]"); if (ph) ph.replaceWith(emblemaEl(ph.dataset.emb));
